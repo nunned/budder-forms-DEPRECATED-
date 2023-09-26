@@ -4,6 +4,8 @@ import { useState } from "react";
 import DatePicker from "../folder-comp/datepicker";
 
 function CreateImmPlantPackages() {
+  const [showOverlay, setShowOverlay] = useState(false);
+
   const [formData, setFormData] = useState({
     groupName: "",
     newTag: "",
@@ -87,6 +89,17 @@ function CreateImmPlantPackages() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // Wrap the note text if it's too long
+    const wrappedNote = formData.note.split("").reduce((acc, char, idx) => {
+      if (idx % 50 === 0 && idx !== 0) {
+        return acc + "\n" + char;
+      }
+      return acc + char;
+    }, "");
+
+    // Update the note in formData
+    setFormData((prev) => ({ ...prev, note: wrappedNote }));
+    
     // TODO: Push formData to your backend
     console.log(formData);
   };
@@ -176,17 +189,30 @@ function CreateImmPlantPackages() {
                   onChange={handleChange}
                 />
               </div>
+              <DatePicker dateTitle="Package Date" />
               <div className="itm-container">
-                <p>temp</p>
+                <p>Notes</p>
                 <input
                   type="text"
-                  name="strain"
-                  placeholder="ex. B. Kush 5-30"
-                  value={formData.strain}
-                  onChange={handleChange}
+                  name="note"
+                  placeholder="Click to add notes..."
+                  value={formData.note}
+                  onClick={() => setShowOverlay(true)}
+                  readOnly
                 />
               </div>
-              <DatePicker />
+              {showOverlay && (
+                <div className="overlay">
+                  <textarea
+                    value={formData.note}
+                    onChange={handleChange}
+                    name="note"
+                    rows="5"
+                    cols="30"
+                  ></textarea>
+                  <button onClick={() => setShowOverlay(false)}>Done</button>
+                </div>
+              )}
             </div>
           </form>
         </div>
