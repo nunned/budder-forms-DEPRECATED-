@@ -1,0 +1,56 @@
+.date-picker {
+  position: relative;
+  width: 100%;
+}
+
+.date-title {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.date-header {
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #353547;
+  color: rgba(255, 255, 255, 0.50);
+  cursor: pointer;
+}
+
+.date-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #292937;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+}
+
+.date-options button {
+  background-color: #353547;
+  color: azure;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.date-options button:hover {
+  background-color: #444;
+}
+
+.date-options input[type="date"] {
+  padding: 10px;
+  background-color: #353547;
+  color: azure;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}

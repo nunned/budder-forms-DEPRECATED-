@@ -1,0 +1,90 @@
+/* template_form.css */
+* {
+  text-align: center;
+  box-sizing: border-box; /* This will ensure padding and borders are included in element dimensions */
+}
+
+.form-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.form-container {
+  background: #292937;
+  border-radius: 10px;
+  display: flex;
+  width: auto;
+  padding: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  color: aliceblue;
+}
+
+.itm-header {
+  display: flex;
+  align-items: flex-start;
+}
+
+.itm-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.itm-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+}
+
+.itm-container input[type="text"] {
+  display: flex;
+  padding: 10px 78px 10px 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #353547;
+  color: azure;
+  text-align: left;
+}
+
+.itm-container input[type="text"]::placeholder {
+  font-size: 15px; 
+}
+
+.strain-input-container {
+  position: relative;
+  width: fit-content; /* This will ensure that the container fits its content, helping in positioning */
+}
+
+.suggestion-input,
+.user-input {
+  padding: 10px 78px 10px 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
+  width: 100%;
+}
+
+.suggestions {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 5px 10px;
+  background-color: #353547;
+  color: #555; 
+  border-radius: 0 0 8px 8px; /* round only the bottom corners */
+  margin-top: -5px;
+  margin-left: 10px;
+}
+
+
+
+.user-input {
+  background-color: transparent;
+  position: relative;
+  z-index: 2;
+}
