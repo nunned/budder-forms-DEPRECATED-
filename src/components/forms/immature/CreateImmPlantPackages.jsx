@@ -7,35 +7,75 @@ function CreateImmPlantPackages() {
   const [formData, setFormData] = useState({
     groupName: "",
     newTag: "",
+    location: "",
+    item: "",
     dateValue: "",
     plantCount: "",
-    strain: "",
+    note: "",
   });
 
   const [suggestion, setSuggestion] = useState("");
 
   const groupNames = ["B. Kush 5-30", "A. Kush 20-40", "C. Kush 80-160"];
 
-  const newTags = ["tag12312321", "tag123123232121", "tag1233112321"];
-
   const handleNameChange = (event) => {
     const value = event.target.value;
     const foundName = groupNames.find((groupName) =>
-    groupName.toLowerCase().startsWith(value.toLowerCase())
+      groupName.toLowerCase().startsWith(value.toLowerCase())
     );
     setSuggestion(foundName ? foundName.substring(value.length) : "");
     handleChange(event);
   };
 
+  //Type="Medical Package", Status="Received",Comissioned="05/20/2022 12:50 am"
+  const newTags = [
+    "1A40E0100019269000000064",
+    "1A40E0100019269000000065",
+    "1A40E0100019269000000066",
+    "1A40E0100019269000000067",
+    "1A40E0100019269000000068",
+    "1A40E0100019269000000069",
+    "1A40E0100019269000000070",
+    "1A40E0100019269000000071",
+    "1A40E0100019269000000072",
+    "1A40E0100019269000000073",
+  ];
+  // This needs to be updated with better interaction
   const handleTagChange = (event) => {
-    const value = event.target.value;
+    const tagVal = event.target.value;
     const foundTag = newTags.find((tag) =>
-      tag.toLowerCase().startsWith(value.toLowerCase())
+      tag.toLowerCase().startsWith(tagVal.toLowerCase())
     );
-    setSuggestion(foundTag ? foundTag.substring(value.length) : "");
+    setSuggestion(foundTag ? foundTag.substring(tagVal.length) : "");
     handleChange(event);
-};
+  };
 
+  const locations = ["BREEDING", "CLONE", "DRYING", "MOTHER", "VEGETATIVE"];
+
+  const handleLocChange = (event) => {
+    const locVal = event.target.value;
+    const foundLoc = locations.find((tag) =>
+      tag.toLowerCase().startsWith(locVal.toLowerCase())
+    );
+    setSuggestion(foundLoc ? foundLoc.substring(locVal.length) : "");
+    handleChange(event);
+  };
+
+  const items = [
+    "Apple Fritter Clones",
+    "Forum Clones",
+    "RAW Clones",
+    "Runtz Clones",
+  ];
+
+  const handleItmChange = (event) => {
+    const itmVal = event.target.value;
+    const foundItm = items.find((tag) =>
+      tag.toLowerCase().startsWith(itmVal.toLowerCase())
+    );
+    setSuggestion(foundItm ? foundItm.substring(itmVal.length) : "");
+    handleChange(event);
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -58,7 +98,7 @@ function CreateImmPlantPackages() {
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
-            <div className="itm-container strain-input-container">
+              <div className="itm-container strain-input-container">
                 <p>Group Name</p>
                 <input
                   type="text"
@@ -88,6 +128,40 @@ function CreateImmPlantPackages() {
                 {formData.newTag.length > 0 && suggestion && (
                   <div className="suggestions">
                     {formData.newTag}
+                    <strong>{suggestion}</strong>
+                  </div>
+                )}
+              </div>
+              <div className="itm-container strain-input-container">
+                <p>Location</p>
+                <input
+                  type="text"
+                  name="location"
+                  placeholder="Type part of the Name"
+                  value={formData.location}
+                  onChange={handleLocChange}
+                  className="user-input"
+                />
+                {formData.location.length > 0 && suggestion && (
+                  <div className="suggestions">
+                    {formData.location}
+                    <strong>{suggestion}</strong>
+                  </div>
+                )}
+              </div>
+              <div className="itm-container strain-input-container">
+                <p>Item</p>
+                <input
+                  type="text"
+                  name="item"
+                  placeholder="Type part of the Name"
+                  value={formData.item}
+                  onChange={handleItmChange}
+                  className="user-input"
+                />
+                {formData.item.length > 0 && suggestion && (
+                  <div className="suggestions">
+                    {formData.item}
                     <strong>{suggestion}</strong>
                   </div>
                 )}

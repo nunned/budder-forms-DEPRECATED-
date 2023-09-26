@@ -18,8 +18,6 @@ function CreatePlantings() {
   //These need to be made dynamic
   const strains = ["StrainA", "bar", "StrainC"]; // Add more strains as necessary
 
-  const locations = ["MOTHERSHIP", "VZN", "Vegytables"];
-
   const handleStrainChange = (event) => {
     const value = event.target.value;
     const foundStrain = strains.find((strain) =>
@@ -28,6 +26,8 @@ function CreatePlantings() {
     setSuggestion(foundStrain ? foundStrain.substring(value.length) : "");
     handleChange(event);
   };
+
+  const locations = ["MOTHERSHIP", "VZN", "Vegytables"];
 
   const handleLocChange = (event) => {
     const value = event.target.value;
