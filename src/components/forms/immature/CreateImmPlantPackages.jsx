@@ -1,13 +1,12 @@
 import "../template_form.css";
 import Form_header from "../folder-comp/form_header";
-import CustomDropdown from "../folder-comp/CustomDropdown";
 import { useState } from "react";
 import DatePicker from "../folder-comp/datepicker";
 
 function CreateImmPlantPackages() {
   const [formData, setFormData] = useState({
     groupName: "",
-    dropdownValue: "",
+    newTag: "",
     dateValue: "",
     plantCount: "",
     strain: "",
@@ -15,7 +14,9 @@ function CreateImmPlantPackages() {
 
   const [suggestion, setSuggestion] = useState("");
 
-  const groupNames = ["B. Kush 5-30", "A. Kush 20-40", "C. Kush 80-160"]; 
+  const groupNames = ["B. Kush 5-30", "A. Kush 20-40", "C. Kush 80-160"];
+
+  const newTags = ["tag12312321", "tag123123232121", "tag1233112321"];
 
   const handleNameChange = (event) => {
     const value = event.target.value;
@@ -25,6 +26,16 @@ function CreateImmPlantPackages() {
     setSuggestion(foundName ? foundName.substring(value.length) : "");
     handleChange(event);
   };
+
+  const handleTagChange = (event) => {
+    const value = event.target.value;
+    const foundTag = newTags.find((tag) =>
+      tag.toLowerCase().startsWith(value.toLowerCase())
+    );
+    setSuggestion(foundTag ? foundTag.substring(value.length) : "");
+    handleChange(event);
+};
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -43,7 +54,7 @@ function CreateImmPlantPackages() {
   return (
     <div className="form-wrap">
       <div className="form-container">
-        <Form_header text="Create Plantings" />
+        <Form_header text="Create Immature Plants Packages" />
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
@@ -64,13 +75,23 @@ function CreateImmPlantPackages() {
                   </div>
                 )}
               </div>
-              <>
-                <CustomDropdown
-                  options={["Option 1", "Option 2", "Option 3"]}
-                  name="dropdownValue"
-                  onChange={handleChange}
+              <div className="itm-container strain-input-container">
+                <p>New Tag</p>
+                <input
+                  type="text"
+                  name="newTag"
+                  placeholder="Type Part of the Name"
+                  value={formData.newTag}
+                  onChange={handleTagChange}
+                  className="user-input"
                 />
-              </>
+                {formData.newTag.length > 0 && suggestion && (
+                  <div className="suggestions">
+                    {formData.newTag}
+                    <strong>{suggestion}</strong>
+                  </div>
+                )}
+              </div>
               <div className="itm-container">
                 <p>Plants Count</p>
                 <input

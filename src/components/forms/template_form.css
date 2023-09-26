@@ -54,7 +54,7 @@
 }
 
 .itm-container input[type="text"]::placeholder {
-  font-size: 15px; 
+  font-size: 15px;
 }
 
 .strain-input-container {
@@ -75,13 +75,11 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 5px 10px;
   background-color: #353547;
-  color: #555; 
+  color: #555;
   border-radius: 0 0 8px 8px; /* round only the bottom corners */
   margin-top: -5px;
   margin-left: 10px;
 }
-
-
 
 .user-input {
   background-color: transparent;

@@ -8,14 +8,17 @@ function CreatePlantings() {
   const [formData, setFormData] = useState({
     groupName: "",
     dropdownValue: "",
-    dateValue: "",
     plantCount: "",
     strain: "",
+    dateValue: "",
+    location: "",
   });
 
   const [suggestion, setSuggestion] = useState("");
-
+  //These need to be made dynamic
   const strains = ["StrainA", "bar", "StrainC"]; // Add more strains as necessary
+
+  const locations = ["MOTHERSHIP", "VZN", "Vegytables"];
 
   const handleStrainChange = (event) => {
     const value = event.target.value;
@@ -25,6 +28,16 @@ function CreatePlantings() {
     setSuggestion(foundStrain ? foundStrain.substring(value.length) : "");
     handleChange(event);
   };
+
+  const handleLocChange = (event) => {
+    const value = event.target.value;
+    const foundLoc = locations.find((tag) =>
+      tag.toLowerCase().startsWith(value.toLowerCase())
+    );
+    setSuggestion(foundLoc ? foundLoc.substring(value.length) : "");
+    handleChange(event);
+};
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -92,6 +105,23 @@ function CreatePlantings() {
                 )}
               </div>
               <DatePicker />
+              <div className="itm-container strain-input-container">
+                <p>Location</p>
+                <input
+                  type="text"
+                  name="location"
+                  placeholder="Type part of the Name"
+                  value={formData.location}
+                  onChange={handleLocChange}
+                  className="user-input"
+                />
+                {formData.location.length > 0 && suggestion && (
+                  <div className="suggestions">
+                    {formData.location}
+                    <strong>{suggestion}</strong>
+                  </div>
+                )}
+              </div>
             </div>
           </form>
         </div>
