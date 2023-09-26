@@ -86,3 +86,19 @@
   position: relative;
   z-index: 2;
 }
+
+
+.submit-button {
+  background-color: #434375;  
+  color: aliceblue;  
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.submit-button:hover {
+  background-color: #353547; 
+}

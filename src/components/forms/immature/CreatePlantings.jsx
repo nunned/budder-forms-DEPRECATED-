@@ -36,8 +36,7 @@ function CreatePlantings() {
     );
     setSuggestion(foundLoc ? foundLoc.substring(value.length) : "");
     handleChange(event);
-};
-
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -51,6 +50,9 @@ function CreatePlantings() {
     event.preventDefault();
     // TODO: Push formData to your backend
     console.log(formData);
+
+    const newWindow = window.open("", "_blank");
+    newWindow.document.write(`<pre>${JSON.stringify(formData, null, 2)}</pre>`);
   };
 
   return (
@@ -72,7 +74,8 @@ function CreatePlantings() {
               </div>
               <>
                 <CustomDropdown
-                  options={["Option 1", "Option 2", "Option 3"]}
+                  text="Plants Type"
+                  options={["Clone", "Seed"]}
                   name="dropdownValue"
                   onChange={handleChange}
                 />
@@ -104,7 +107,7 @@ function CreatePlantings() {
                   </div>
                 )}
               </div>
-              <DatePicker />
+              <DatePicker onChange={handleChange} />
               <div className="itm-container strain-input-container">
                 <p>Location</p>
                 <input
@@ -123,6 +126,9 @@ function CreatePlantings() {
                 )}
               </div>
             </div>
+            <button type="submit" className="submit-button">
+              Submit
+            </button>
           </form>
         </div>
       </div>
