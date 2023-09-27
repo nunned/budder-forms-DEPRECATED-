@@ -4,3 +4,8 @@
 
 - Fix styling so placeholder text matches
 - Replace suggestions in input with autocomplete
+
+# Abbreviations
+
+- ChangePBStrains = Change Plant Batches Strains
+ - PB = Plant Batches
