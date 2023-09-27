@@ -195,7 +195,7 @@ function CreateImmPlantPackages() {
                   onChange={handleChange}
                 />
               </div>
-              <DatePicker dateTitle="Package Date" />
+              <DatePicker dateTitle="Package Date" onChange={handleChange}/>
               <div className="itm-container">
                 <p>Notes</p>
                 <input
