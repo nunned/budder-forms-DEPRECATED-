@@ -2,7 +2,10 @@ import PropTypes from "prop-types";
 import { useState, useEffect, useRef } from "react";
 import "./AutoComplete.css";
 
-const AutoComplete = ({ options = ["Oranges", "Apples", "Pearls"], onChange }) => {
+const AutoComplete = ({
+  options = ["Oranges", "Apples", "Pearls"],
+  onChange,
+}) => {
   const [value, setValue] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const suggestions = options.filter((option) =>
@@ -41,11 +44,13 @@ const AutoComplete = ({ options = ["Oranges", "Apples", "Pearls"], onChange }) =
   return (
     <div className="autocomplete" ref={autocompleteRef}>
       <input
+        className="autocomplete-input"
         value={value}
         onChange={handleChange}
         placeholder="Search"
         onFocus={() => setShowSuggestions(true)}
       />
+
       {showSuggestions && (
         <ul className="suggestions">
           {suggestions.map((suggestion) => (
@@ -64,6 +69,7 @@ const AutoComplete = ({ options = ["Oranges", "Apples", "Pearls"], onChange }) =
 
 AutoComplete.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string),
+  onChange: PropTypes.func,
 };
 
 export default AutoComplete;

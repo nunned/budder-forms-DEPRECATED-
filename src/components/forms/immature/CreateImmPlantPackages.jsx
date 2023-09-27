@@ -21,14 +21,14 @@ function CreateImmPlantPackages() {
 
   const groupNames = ["B. Kush 5-30", "A. Kush 20-40", "C. Kush 80-160"];
 
-  const handleNameChange = (event) => {
-    const value = event.target.value;
-    const foundName = groupNames.find((groupName) =>
-      groupName.toLowerCase().startsWith(value.toLowerCase())
-    );
-    setSuggestion(foundName ? foundName.substring(value.length) : "");
-    handleChange(event);
-  };
+  // const handleNameChange = (event) => {
+  //   const value = event.target.value;
+  //   const foundName = groupNames.find((groupName) =>
+  //     groupName.toLowerCase().startsWith(value.toLowerCase())
+  //   );
+  //   setSuggestion(foundName ? foundName.substring(value.length) : "");
+  //   handleChange(event);
+  // };
 
   //Type="Medical Package", Status="Received",Comissioned="05/20/2022 12:50 am"
   const newTags = [
@@ -121,7 +121,7 @@ function CreateImmPlantPackages() {
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
-              <div className="itm-container strain-input-container">
+              <div className="itm-container">
                 <p>Group Name</p>
                 <AutoComplete
                   options={groupNames}
