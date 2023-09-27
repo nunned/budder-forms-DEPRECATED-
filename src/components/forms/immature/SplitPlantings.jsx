@@ -1,15 +1,13 @@
 import "../template_form.css";
 import Form_header from "../folder-comp/form_header";
-import CustomDropdown from "../folder-comp/CustomDropdown";
 import { useState } from "react";
 import DatePicker from "../folder-comp/datepicker";
 import AutoComplete from "../../AutoComplete";
 
 function SplitPlantings() {
   const [formData, setFormData] = useState({
-    groupNames: "",
+    ogGroupName: "",
     newGroupName: "",
-    dropdownValue: "",
     plantCount: "",
     strain: "",
     dateValue: "",
@@ -54,7 +52,7 @@ function SplitPlantings() {
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,
-                      groupName: selectedValue,
+                      ogGroupName: selectedValue,
                     }));
                   }}
                 />
