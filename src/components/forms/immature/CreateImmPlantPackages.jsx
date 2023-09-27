@@ -19,7 +19,6 @@ function CreateImmPlantPackages() {
 
   const groupNames = ["B. Kush 5-30", "A. Kush 20-40", "C. Kush 80-160"];
 
-
   //Type="Medical Package", Status="Received",Comissioned="05/20/2022 12:50 am"
   const newTags = [
     "1A40E0100019269000000064",
@@ -64,8 +63,6 @@ function CreateImmPlantPackages() {
     const wrappedNote = wrapNote(formData.note);
     setFormData((prev) => ({ ...prev, note: wrappedNote }));
   };
-
-  // ... rest of the handler functions ...
 
   const handleSubmit = (event) => {
     event.preventDefault();

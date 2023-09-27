@@ -6,7 +6,7 @@ import AutoComplete from "../../AutoComplete";
 
 function SplitPlantings() {
   const [formData, setFormData] = useState({
-    ogGroupName: "",
+    sourceGroup: "",
     newGroupName: "",
     plantCount: "",
     strain: "",
@@ -52,7 +52,7 @@ function SplitPlantings() {
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,
-                      ogGroupName: selectedValue,
+                      sourceGroup: selectedValue,
                     }));
                   }}
                 />
