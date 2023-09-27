@@ -17,18 +17,8 @@ function CreateImmPlantPackages() {
     note: "",
   });
 
-  const [suggestion, setSuggestion] = useState("");
-
   const groupNames = ["B. Kush 5-30", "A. Kush 20-40", "C. Kush 80-160"];
 
-  // const handleNameChange = (event) => {
-  //   const value = event.target.value;
-  //   const foundName = groupNames.find((groupName) =>
-  //     groupName.toLowerCase().startsWith(value.toLowerCase())
-  //   );
-  //   setSuggestion(foundName ? foundName.substring(value.length) : "");
-  //   handleChange(event);
-  // };
 
   //Type="Medical Package", Status="Received",Comissioned="05/20/2022 12:50 am"
   const newTags = [

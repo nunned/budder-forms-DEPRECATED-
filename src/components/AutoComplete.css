@@ -49,3 +49,19 @@ input:focus {
 .autocomplete li:hover {
   background-color: #d4d4d4;
 }
+
+.input-container {
+  position: relative;
+  display: inline-block;
+}
+
+.input-svg {
+  position: absolute;
+  object-fit: cover;
+  height: 10px; /* Adjust as needed */
+  width: 10px;  /* Adjust as needed */
+  right: 10px;  /* Adjust distance from the right of the container */
+  top: 45%;
+  transform: translateY(-50%);
+}
+

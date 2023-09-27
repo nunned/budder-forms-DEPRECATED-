@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useState, useEffect, useRef } from "react";
 import "./AutoComplete.css";
+import magIcon from "../assets/mag_glass.svg";
 
 const AutoComplete = ({
   options = ["Oranges", "Apples", "Pearls"],
@@ -43,14 +44,20 @@ const AutoComplete = ({
 
   return (
     <div className="autocomplete" ref={autocompleteRef}>
-      <input
-        className="autocomplete-input"
-        value={value}
-        onChange={handleChange}
-        placeholder="Search"
-        onFocus={() => setShowSuggestions(true)}
-      />
-
+      <div className="input-container">
+        <input
+          className="autocomplete-input"
+          value={value}
+          onChange={handleChange}
+          placeholder="Search"
+          onFocus={() => setShowSuggestions(true)}
+        />
+        <img
+          src={magIcon}
+          alt="description"
+          className="input-svg"
+        />
+      </div>
       {showSuggestions && (
         <ul className="suggestions">
           {suggestions.map((suggestion) => (
