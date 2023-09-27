@@ -3,6 +3,7 @@ import Form_header from "../folder-comp/form_header";
 import CustomDropdown from "../folder-comp/CustomDropdown";
 import { useState } from "react";
 import DatePicker from "../folder-comp/datepicker";
+import AutoComplete from "../../AutoComplete";
 
 function CreatePlantings() {
   const [formData, setFormData] = useState({
@@ -14,29 +15,10 @@ function CreatePlantings() {
     location: "",
   });
 
-  const [suggestion, setSuggestion] = useState("");
   //These need to be made dynamic
-  const strains = ["StrainA", "bar", "StrainC"]; // Add more strains as necessary
+  const strains = ["Apple Fritter", "RAW", "Forum", "Runtz"]; // Add more strains as necessary
 
-  const handleStrainChange = (event) => {
-    const value = event.target.value;
-    const foundStrain = strains.find((strain) =>
-      strain.toLowerCase().startsWith(value.toLowerCase())
-    );
-    setSuggestion(foundStrain ? foundStrain.substring(value.length) : "");
-    handleChange(event);
-  };
-
-  const locations = ["MOTHERSHIP", "VZN", "Vegytables"];
-
-  const handleLocChange = (event) => {
-    const value = event.target.value;
-    const foundLoc = locations.find((tag) =>
-      tag.toLowerCase().startsWith(value.toLowerCase())
-    );
-    setSuggestion(foundLoc ? foundLoc.substring(value.length) : "");
-    handleChange(event);
-  };
+  const locations = ["BREEDING", "CLONE", "DRYING", "MOTHER", "VEGETATIVE"];
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -90,40 +72,30 @@ function CreatePlantings() {
                   onChange={handleChange}
                 />
               </div>
-              <div className="itm-container strain-input-container">
+              <div className="itm-container">
                 <p>Strain</p>
-                <input
-                  type="text"
-                  name="strain"
-                  placeholder="ex. RAW"
-                  value={formData.strain}
-                  onChange={handleStrainChange}
-                  className="user-input"
+                <AutoComplete
+                  options={strains}
+                  onChange={(selectedValue) => {
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      strain: selectedValue,
+                    }));
+                  }}
                 />
-                {formData.strain.length > 0 && suggestion && (
-                  <div className="suggestions">
-                    {formData.strain}
-                    <strong>{suggestion}</strong>
-                  </div>
-                )}
               </div>
               <DatePicker onChange={handleChange} />
-              <div className="itm-container strain-input-container">
+              <div className="itm-container">
                 <p>Location</p>
-                <input
-                  type="text"
-                  name="location"
-                  placeholder="Type part of the Name"
-                  value={formData.location}
-                  onChange={handleLocChange}
-                  className="user-input"
+                <AutoComplete
+                  options={locations}
+                  onChange={(selectedValue) => {
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      location: selectedValue,
+                    }));
+                  }}
                 />
-                {formData.location.length > 0 && suggestion && (
-                  <div className="suggestions">
-                    {formData.location}
-                    <strong>{suggestion}</strong>
-                  </div>
-                )}
               </div>
             </div>
             <button type="submit" className="submit-button">

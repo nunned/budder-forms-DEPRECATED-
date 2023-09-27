@@ -43,26 +43,8 @@ function CreateImmPlantPackages() {
     "1A40E0100019269000000072",
     "1A40E0100019269000000073",
   ];
-  // This needs to be updated with better interaction
-  const handleTagChange = (event) => {
-    const tagVal = event.target.value;
-    const foundTag = newTags.find((tag) =>
-      tag.toLowerCase().startsWith(tagVal.toLowerCase())
-    );
-    setSuggestion(foundTag ? foundTag.substring(tagVal.length) : "");
-    handleChange(event);
-  };
 
   const locations = ["BREEDING", "CLONE", "DRYING", "MOTHER", "VEGETATIVE"];
-
-  const handleLocChange = (event) => {
-    const locVal = event.target.value;
-    const foundLoc = locations.find((tag) =>
-      tag.toLowerCase().startsWith(locVal.toLowerCase())
-    );
-    setSuggestion(foundLoc ? foundLoc.substring(locVal.length) : "");
-    handleChange(event);
-  };
 
   const items = [
     "Apple Fritter Clones",
@@ -70,15 +52,6 @@ function CreateImmPlantPackages() {
     "RAW Clones",
     "Runtz Clones",
   ];
-
-  const handleItmChange = (event) => {
-    const itmVal = event.target.value;
-    const foundItm = items.find((tag) =>
-      tag.toLowerCase().startsWith(itmVal.toLowerCase())
-    );
-    setSuggestion(foundItm ? foundItm.substring(itmVal.length) : "");
-    handleChange(event);
-  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -134,56 +107,41 @@ function CreateImmPlantPackages() {
                 />
               </div>
 
-              <div className="itm-container strain-input-container">
+              <div className="itm-container">
                 <p>New Tag</p>
-                <input
-                  type="text"
-                  name="newTag"
-                  placeholder="Type Part of the Name"
-                  value={formData.newTag}
-                  onChange={handleTagChange}
-                  className="user-input"
+                <AutoComplete
+                  options={newTags}
+                  onChange={(selectedValue) => {
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      newTag: selectedValue,
+                    }));
+                  }}
                 />
-                {formData.newTag.length > 0 && suggestion && (
-                  <div className="suggestions">
-                    {formData.newTag}
-                    <strong>{suggestion}</strong>
-                  </div>
-                )}
               </div>
-              <div className="itm-container strain-input-container">
+              <div className="itm-container">
                 <p>Location</p>
-                <input
-                  type="text"
-                  name="location"
-                  placeholder="Type part of the Name"
-                  value={formData.location}
-                  onChange={handleLocChange}
-                  className="user-input"
+                <AutoComplete
+                  options={locations}
+                  onChange={(selectedValue) => {
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      location: selectedValue,
+                    }));
+                  }}
                 />
-                {formData.location.length > 0 && suggestion && (
-                  <div className="suggestions">
-                    {formData.location}
-                    <strong>{suggestion}</strong>
-                  </div>
-                )}
               </div>
-              <div className="itm-container strain-input-container">
+              <div className="itm-container">
                 <p>Item</p>
-                <input
-                  type="text"
-                  name="item"
-                  placeholder="Type part of the Name"
-                  value={formData.item}
-                  onChange={handleItmChange}
-                  className="user-input"
+                <AutoComplete
+                  options={items}
+                  onChange={(selectedValue) => {
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      item: selectedValue,
+                    }));
+                  }}
                 />
-                {formData.item.length > 0 && suggestion && (
-                  <div className="suggestions">
-                    {formData.item}
-                    <strong>{suggestion}</strong>
-                  </div>
-                )}
               </div>
               <div className="itm-container">
                 <p>Plants Count</p>
@@ -195,7 +153,7 @@ function CreateImmPlantPackages() {
                   onChange={handleChange}
                 />
               </div>
-              <DatePicker dateTitle="Package Date" onChange={handleChange}/>
+              <DatePicker dateTitle="Package Date" onChange={handleChange} />
               <div className="itm-container">
                 <p>Notes</p>
                 <input
