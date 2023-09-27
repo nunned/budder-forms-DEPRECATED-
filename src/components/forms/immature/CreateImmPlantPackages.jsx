@@ -2,6 +2,7 @@ import "../template_form.css";
 import Form_header from "../folder-comp/form_header";
 import { useState } from "react";
 import DatePicker from "../folder-comp/datepicker";
+import AutoComplete from "../../AutoComplete";
 
 function CreateImmPlantPackages() {
   const [showOverlay, setShowOverlay] = useState(false);
@@ -87,21 +88,30 @@ function CreateImmPlantPackages() {
     }));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Wrap the note text if it's too long
-    const wrappedNote = formData.note.split("").reduce((acc, char, idx) => {
+  const wrapNote = (note) => {
+    return note.split("").reduce((acc, char, idx) => {
       if (idx % 50 === 0 && idx !== 0) {
         return acc + "\n" + char;
       }
       return acc + char;
     }, "");
+  };
 
-    // Update the note in formData
+  const handleNoteSubmit = () => {
+    const wrappedNote = wrapNote(formData.note);
     setFormData((prev) => ({ ...prev, note: wrappedNote }));
-    
+  };
+
+  // ... rest of the handler functions ...
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
     // TODO: Push formData to your backend
     console.log(formData);
+
+    const newWindow = window.open("", "_blank");
+    newWindow.document.write(`<pre>${JSON.stringify(formData, null, 2)}</pre>`);
   };
 
   return (
@@ -113,21 +123,17 @@ function CreateImmPlantPackages() {
             <div className="itm-list">
               <div className="itm-container strain-input-container">
                 <p>Group Name</p>
-                <input
-                  type="text"
-                  name="groupName"
-                  placeholder="Type Part of the Name"
-                  value={formData.groupName}
-                  onChange={handleNameChange}
-                  className="user-input"
+                <AutoComplete
+                  options={groupNames}
+                  onChange={(selectedValue) => {
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      groupName: selectedValue,
+                    }));
+                  }}
                 />
-                {formData.groupName.length > 0 && suggestion && (
-                  <div className="suggestions">
-                    {formData.groupName}
-                    <strong>{suggestion}</strong>
-                  </div>
-                )}
               </div>
+
               <div className="itm-container strain-input-container">
                 <p>New Tag</p>
                 <input
@@ -210,10 +216,20 @@ function CreateImmPlantPackages() {
                     rows="5"
                     cols="30"
                   ></textarea>
-                  <button onClick={() => setShowOverlay(false)}>Done</button>
+                  <button
+                    onClick={() => {
+                      handleNoteSubmit();
+                      setShowOverlay(false);
+                    }}
+                  >
+                    Done
+                  </button>
                 </div>
               )}
             </div>
+            <button type="submit" className="submit-button">
+              Submit
+            </button>
           </form>
         </div>
       </div>

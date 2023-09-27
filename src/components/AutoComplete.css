@@ -1,20 +1,23 @@
+/* Autocomplete.css */
+
 .container {
   max-width: 960px;
   margin-top: 40px;
 }
 
 .autocomplete {
-  width: 500px;
+  width: auto;
   border: 1px solid #d4d4d4;
   border-radius: 10px;
 }
 
 .autocomplete input {
-  width: 100%;
+  width: auto;
   border: none;
-  margin: 10px 0;
   font-size: 16px;
-  padding: 10px 10px 0 10px;
+  padding: 10px 0px 10px 0px;
+  background-color: transparent;
+  color: aliceblue;
 }
 
 input:focus {
@@ -26,7 +29,7 @@ input:focus {
   margin: 0;
   padding: 0;
   border-top: 1px solid #d4d4d4;
-  background-color: #f7f7f7;
+  /* background-color: #f7f7f7; */
   border-radius: 0 0 10px 10px;
 }
 

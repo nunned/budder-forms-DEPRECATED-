@@ -76,9 +76,11 @@
   padding: 5px 10px;
   background-color: #353547;
   color: #555;
-  border-radius: 0 0 8px 8px; /* round only the bottom corners */
+  border-radius: 0 0 8px 8px;
   margin-top: -5px;
   margin-left: 10px;
+  max-width: 100%; /* Ensure suggestions don't exceed parent's width */
+  overflow-x: auto; /* Scroll horizontally if suggestion is too wide */
 }
 
 .user-input {
@@ -87,10 +89,9 @@
   z-index: 2;
 }
 
-
 .submit-button {
-  background-color: #4b4b70;  
-  color: aliceblue;  
+  background-color: #4b4b70;
+  color: aliceblue;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
@@ -100,7 +101,7 @@
 }
 
 .submit-button:hover {
-  background-color: #353547; 
+  background-color: #353547;
 }
 
 .overlay {
