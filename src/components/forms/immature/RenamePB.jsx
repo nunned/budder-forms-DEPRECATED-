@@ -32,7 +32,7 @@ function RenamePlantBatches() {
   return (
     <div className="form-wrap">
       <div className="form-container">
-        <Form_header text="Create Plantings" />
+        <Form_header text="Rename Plant Batches" />
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">

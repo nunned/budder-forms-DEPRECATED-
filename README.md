@@ -8,6 +8,6 @@
 # Abbreviations
 
 - ChangePBStrains = Change Plant Batches Strains
- - PB = Plant Batches
+    - PB = Plant Batches
 - CreateIPP = Create Immature Plant Packages
- - IPP = Immature Plant Package
+    - IPP = Immature Plant Package

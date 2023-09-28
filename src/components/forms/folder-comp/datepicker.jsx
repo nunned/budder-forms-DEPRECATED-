@@ -2,19 +2,19 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import "./datepicker.css";
 
-function DatePicker({ onChange, dateTitle = "Planting Date" }) {
+function DatePicker({ onChange, dateTitle = "Planting Date", name = "dateValue" }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState("");
 
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
-    onChange({ target: { value: event.target.value, name: "dateValue" } });
+    onChange({ target: { value: event.target.value, name: name } });
   };
 
   const selectToday = () => {
     const today = new Date().toISOString().split("T")[0]; // Gets the date in "YYYY-MM-DD" format
     setSelectedDate(today);
-    onChange({ target: { value: today, name: "dateValue" } });
+    onChange({ target: { value: today, name: name } });
     setIsOpen(false);
   };
 
@@ -34,10 +34,10 @@ function DatePicker({ onChange, dateTitle = "Planting Date" }) {
   );
 }
 
-
 DatePicker.propTypes = {
   onChange: PropTypes.func.isRequired,
-  dateTitle: PropTypes.string.isRequired,
+  dateTitle: PropTypes.string,
+  name: PropTypes.string,
 };
 
 export default DatePicker;
