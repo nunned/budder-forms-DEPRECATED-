@@ -1,4 +1,5 @@
 import './App.css';
+import ChangeIPGP from './components/forms/immature/ChangeIPGP';
 import ChangePBLocation from './components/forms/immature/ChangePBL';
 import ChangePBStrains from './components/forms/immature/ChangePBStrains';
 import CreateImmPlantPackages from './components/forms/immature/CreateIPP';
@@ -17,6 +18,7 @@ function App() {
       <RenamePlantBatches />
       <ChangePBStrains />
       <ChangePBLocation />
+      <ChangeIPGP />
     </div>
   )
 }

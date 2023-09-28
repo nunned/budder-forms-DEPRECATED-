@@ -5,6 +5,7 @@
 - Fix styling so placeholder text matches
 - Replace suggestions in input with autocomplete [almost done]
 - fix plant group names and plant batch names
+- double check ChangeIPGP if it needs ending tags.
 
 # Abbreviations
 

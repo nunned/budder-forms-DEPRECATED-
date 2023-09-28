@@ -8,15 +8,29 @@ import AutoComplete from "../../AutoComplete";
 function ChangeIPGP() {
   const [formData, setFormData] = useState({
     groupName: "",
-    dropdownValue: "",
-    plantCount: "",
-    strain: "",
-    dateValue: "",
-    location: "",
+    newPhase: "",
+    newLocation: "",
+    plantsCount: "",
+    startingTag: "",
+    endingTag: "",
+    changeDate: "",
   });
 
   //These need to be made dynamic
-  const strains = ["Apple Fritter", "RAW", "Forum", "Runtz"]; // Add more strains as necessary
+  const groupNames = ["B. Kush 5-30", "A. Kush 20-40", "C. Kush 80-160"];
+
+  const tags = [
+    "1A40E0100019269000000064",
+    "1A40E0100019269000000065",
+    "1A40E0100019269000000066",
+    "1A40E0100019269000000067",
+    "1A40E0100019269000000068",
+    "1A40E0100019269000000069",
+    "1A40E0100019269000000070",
+    "1A40E0100019269000000071",
+    "1A40E0100019269000000072",
+    "1A40E0100019269000000073",
+  ];
 
   const locations = ["BREEDING", "CLONE", "DRYING", "MOTHER", "VEGETATIVE"];
 
@@ -40,28 +54,42 @@ function ChangeIPGP() {
   return (
     <div className="form-wrap">
       <div className="form-container">
-        <Form_header text="Create Plantings" />
+        <Form_header text="Change Immature Plants Growth Phase" />
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
               <div className="itm-container">
                 <p>Group Name</p>
-                <input
-                  type="text"
-                  name="groupName"
-                  placeholder="ex. B. Kush 5-30"
-                  value={formData.groupName}
-                  onChange={handleChange}
+                <AutoComplete
+                  options={groupNames}
+                  onChange={(selectedValue) => {
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      groupName: selectedValue,
+                    }));
+                  }}
                 />
               </div>
               <>
                 <CustomDropdown
-                  text="Plants Type"
-                  options={["Clone", "Seed"]}
-                  name="dropdownValue"
+                  text="New Phase"
+                  options={["Flowering", "Vegetative"]}
+                  name="newPhase"
                   onChange={handleChange}
                 />
               </>
+              <div className="itm-container">
+                <p>New Location</p>
+                <AutoComplete
+                  options={locations}
+                  onChange={(selectedValue) => {
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      newLocation: selectedValue,
+                    }));
+                  }}
+                />
+              </div>
               <div className="itm-container">
                 <p>Plants Count</p>
                 <input
@@ -73,30 +101,19 @@ function ChangeIPGP() {
                 />
               </div>
               <div className="itm-container">
-                <p>Strain</p>
+                <p>Starting Tag</p>
                 <AutoComplete
-                  options={strains}
+                  options={tags}
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,
-                      strain: selectedValue,
+                      startingTag: selectedValue,
                     }));
                   }}
                 />
               </div>
-              <DatePicker onChange={handleChange} />
-              <div className="itm-container">
-                <p>Location</p>
-                <AutoComplete
-                  options={locations}
-                  onChange={(selectedValue) => {
-                    setFormData((prevData) => ({
-                      ...prevData,
-                      location: selectedValue,
-                    }));
-                  }}
-                />
-              </div>
+
+              <DatePicker dateTitle="Change Date" onChange={handleChange} name="changeDate" />
             </div>
             <button type="submit" className="submit-button">
               Submit

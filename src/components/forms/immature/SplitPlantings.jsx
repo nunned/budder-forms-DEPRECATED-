@@ -46,7 +46,7 @@ function SplitPlantings() {
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
               <div className="itm-container">
-                <p>Group Name</p>
+                <p>Source Group Name</p>
                 <AutoComplete
                   options={groupNames}
                   onChange={(selectedValue) => {
