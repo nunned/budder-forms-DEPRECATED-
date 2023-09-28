@@ -3,43 +3,29 @@ import Form_header from "../folder-comp/form_header";
 import { useState } from "react";
 import DatePicker from "../folder-comp/datepicker";
 import AutoComplete from "../../AutoComplete";
+import CustomDropdown from "../folder-comp/CustomDropdown";
 
 function CreateImmPlantPackages() {
   const [showOverlay, setShowOverlay] = useState(false);
 
   const [formData, setFormData] = useState({
     groupName: "",
-    newTag: "",
-    location: "",
-    item: "",
-    packageDate: "",
     plantCount: "",
+    reason: "",
+    destroyDate: "",
     note: "",
   });
 
   const groupNames = ["B. Kush 5-30", "A. Kush 20-40", "C. Kush 80-160"];
 
-  //Type="Medical Package", Status="Received",Comissioned="05/20/2022 12:50 am"
-  const newTags = [
-    "1A40E0100019269000000064",
-    "1A40E0100019269000000065",
-    "1A40E0100019269000000066",
-    "1A40E0100019269000000067",
-    "1A40E0100019269000000068",
-    "1A40E0100019269000000069",
-    "1A40E0100019269000000070",
-    "1A40E0100019269000000071",
-    "1A40E0100019269000000072",
-    "1A40E0100019269000000073",
-  ];
-
-  const locations = ["BREEDING", "CLONE", "DRYING", "MOTHER", "VEGETATIVE"];
-
-  const items = [
-    "Apple Fritter Clones",
-    "Forum Clones",
-    "RAW Clones",
-    "Runtz Clones",
+  const reasons = [
+    "Beginning Inventory Reconciliation",
+    "Damage/Spoilage",
+    "Disease/Infestation",
+    "Male Plant",
+    "Mandatory State Destruction",
+    "Mother Plant Destruction",
+    "Trimming/Pruning",
   ];
 
   const handleChange = (event) => {
@@ -77,7 +63,7 @@ function CreateImmPlantPackages() {
   return (
     <div className="form-wrap">
       <div className="form-container">
-        <Form_header text="Create Immature Plants Packages" />
+        <Form_header text="Destroy Immature Plants" />
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
@@ -94,42 +80,6 @@ function CreateImmPlantPackages() {
                 />
               </div>
               <div className="itm-container">
-                <p>New Tag</p>
-                <AutoComplete
-                  options={newTags}
-                  onChange={(selectedValue) => {
-                    setFormData((prevData) => ({
-                      ...prevData,
-                      newTag: selectedValue,
-                    }));
-                  }}
-                />
-              </div>
-              <div className="itm-container">
-                <p>Location</p>
-                <AutoComplete
-                  options={locations}
-                  onChange={(selectedValue) => {
-                    setFormData((prevData) => ({
-                      ...prevData,
-                      location: selectedValue,
-                    }));
-                  }}
-                />
-              </div>
-              <div className="itm-container">
-                <p>Item</p>
-                <AutoComplete
-                  options={items}
-                  onChange={(selectedValue) => {
-                    setFormData((prevData) => ({
-                      ...prevData,
-                      item: selectedValue,
-                    }));
-                  }}
-                />
-              </div>
-              <div className="itm-container">
                 <p>Plants Count</p>
                 <input
                   type="text"
@@ -139,10 +89,18 @@ function CreateImmPlantPackages() {
                   onChange={handleChange}
                 />
               </div>
+              <>
+                <CustomDropdown
+                  text="Reason"
+                  options={reasons}
+                  name="dropdownValue"
+                  onChange={handleChange}
+                />
+              </>
               <DatePicker
-                dateTitle="Package Date"
+                dateTitle="Destroy Date"
                 onChange={handleChange}
-                name="packageDate"
+                name="destroyDate"
               />
               <div className="itm-container">
                 <p>Notes</p>

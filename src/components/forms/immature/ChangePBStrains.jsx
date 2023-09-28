@@ -31,7 +31,7 @@ function ChangePBStrains() {
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
               <div className="itm-container">
-                <p>Plant Batch Name</p>
+                <p>Group Name</p>
                 <AutoComplete
                   options={plantBatches}
                   onChange={(selectedValue) => {

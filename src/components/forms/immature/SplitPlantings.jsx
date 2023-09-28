@@ -10,7 +10,7 @@ function SplitPlantings() {
     newGroupName: "",
     plantCount: "",
     strain: "",
-    dateValue: "",
+    plantingDate: "",
     location: "",
   });
 
@@ -101,7 +101,11 @@ function SplitPlantings() {
                   }}
                 />
               </div>
-              <DatePicker onChange={handleChange} />
+              <DatePicker
+                dateTitle="Planting Date"
+                onChange={handleChange}
+                name="plantingDate"
+              />
             </div>
             <button type="submit" className="submit-button">
               Submit

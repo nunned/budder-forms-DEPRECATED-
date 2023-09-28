@@ -144,3 +144,20 @@
 .overlay button:hover {
   background-color: #353547;
 }
+
+.weight-comp {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.weight-input {
+  padding: 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: #353547;
+  color: azure;
+  text-align: left;
+  width: auto; /* Adjust width as needed */
+}

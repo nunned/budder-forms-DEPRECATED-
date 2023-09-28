@@ -1,10 +1,9 @@
-// CustomDropdown.js
 import { useState } from "react";
 import PropTypes from "prop-types";
 import "./customDropdown.css";
 import downarrow from "../../../assets/downarrow.svg";
 
-function CustomDropdown({ options, name, onChange, text = "Dropdown" }) {
+function CustomDropdown({ options, name, onChange, text = null }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -16,7 +15,7 @@ function CustomDropdown({ options, name, onChange, text = "Dropdown" }) {
 
   return (
     <div className="custom-dropdown">
-      <div className="drop-header">{text}</div>
+      {text && <div className="drop-header">{text}</div>}
       <div className="dropdown-header" onClick={() => setIsOpen(!isOpen)}>
         <span className="selected-text">{selectedOption || "Select"}</span>
         <img src={downarrow} alt="" className="downarrow" />
@@ -42,7 +41,7 @@ CustomDropdown.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
 };
 
 export default CustomDropdown;

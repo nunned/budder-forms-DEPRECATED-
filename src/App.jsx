@@ -6,6 +6,8 @@ import CreateImmPlantPackages from './components/forms/immature/CreateIPP';
 import CreatePlantings from './components/forms/immature/CreatePlantings';
 import RenamePlantBatches from './components/forms/immature/RenamePB';
 import SplitPlantings from './components/forms/immature/SplitPlantings';
+import DestroyIP from './components/forms/immature/DestroyIP';
+import RecordPBW from './components/forms/immature/RecordPBW';
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
       <ChangePBStrains />
       <ChangePBLocation />
       <ChangeIPGP />
+      <DestroyIP />
+      <RecordPBW />
     </div>
   )
 }

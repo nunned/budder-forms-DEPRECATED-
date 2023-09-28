@@ -11,7 +11,7 @@ function CreatePlantings() {
     dropdownValue: "",
     plantCount: "",
     strain: "",
-    dateValue: "",
+    plantingDate: "",
     location: "",
   });
 
@@ -84,7 +84,11 @@ function CreatePlantings() {
                   }}
                 />
               </div>
-              <DatePicker onChange={handleChange} />
+              <DatePicker
+                dateTitle="Planting Date"
+                onChange={handleChange}
+                name="plantingDate"
+              />
               <div className="itm-container">
                 <p>Location</p>
                 <AutoComplete
