@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import CustomDropdown from "./CustomDropdown";
 import "../template_form.css";
 import PropTypes from 'prop-types';
