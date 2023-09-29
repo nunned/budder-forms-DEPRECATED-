@@ -21,6 +21,10 @@
   color: aliceblue;
 }
 
+.form-content {
+  margin-top: -1rem;
+}
+
 .itm-header {
   display: flex;
   align-items: flex-start;

@@ -18,6 +18,8 @@
     - IPGP = Immature Plant Growth Phase
 - DestroyIP = Destroy Immature Plants
 - RecordPBW = Record Plant Batch Waste
+- AssignTTVP = assign tags to vegetative plants
+- ReplaceVPT = replace vegetative plants tag
 
 # Important Notes
 
