@@ -1,8 +1,13 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import "./datepicker.css";
+import downarrow from "../../../assets/downarrow.svg";
 
-function DatePicker({ onChange, dateTitle = "Planting Date", name = "dateValue" }) {
+function DatePicker({
+  onChange,
+  dateTitle = "Planting Date",
+  name = "dateValue",
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState("");
 
@@ -23,11 +28,12 @@ function DatePicker({ onChange, dateTitle = "Planting Date", name = "dateValue" 
       <div className="date-title">{dateTitle}</div>
       <div className="date-header" onClick={() => setIsOpen(!isOpen)}>
         {selectedDate || "Select Date"}
+        <img src={downarrow} alt="down arrow" className="down-arrow-icon" />
       </div>
       {isOpen && (
         <div className="date-options">
-          <button onClick={selectToday}>Today</button>
           <input type="date" value={selectedDate} onChange={handleDateChange} />
+          <button onClick={selectToday}>Today</button>
         </div>
       )}
     </div>

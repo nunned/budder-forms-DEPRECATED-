@@ -3,6 +3,8 @@
 import { Link } from 'react-router-dom';
 import AssignTTVP from '../components/forms/veg/assignTTVP';
 import ReplaceVPT from '../components/forms/veg/replaceVPT';
+import ChangeVPS from '../components/forms/veg/changeVPS';
+import ChangeVPL from '../components/forms/veg/changeVPL';
 
 function VegPage() {
   return (
@@ -15,6 +17,8 @@ function VegPage() {
       </nav>
       <AssignTTVP />
       <ReplaceVPT />
+      <ChangeVPS />
+      <ChangeVPL />
       {/* forms */}
     </div>
   );
