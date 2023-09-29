@@ -26,11 +26,13 @@ function WeightComp({ onChange }) {
         className="weight-input"
         placeholder="Weight"
       />
-      <CustomDropdown
-        options={["kg", "lb", "oz"]}
-        name="unit"
-        onChange={handleUnitChange}
-      />
+      <div className="dropdown-container">
+        <CustomDropdown
+          options={["Grams", "Kilograms", "Milligrams", "Ounces", "Pounds"]}
+          name="unit"
+          onChange={handleUnitChange}
+        />
+      </div>
     </div>
   );
 }

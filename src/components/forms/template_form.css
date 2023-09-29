@@ -26,9 +26,10 @@
   align-items: flex-start;
 }
 
+
 .itm-list {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   gap: 5px;
@@ -55,38 +56,7 @@
 
 .itm-container input[type="text"]::placeholder {
   font-size: 15px;
-}
-
-.strain-input-container {
-  position: relative;
-  width: fit-content; /* This will ensure that the container fits its content, helping in positioning */
-}
-
-.suggestion-input,
-.user-input {
-  padding: 10px 78px 10px 20px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  text-align: left;
-  width: 100%;
-}
-
-.suggestions {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 5px 10px;
-  background-color: #353547;
-  color: #555;
-  border-radius: 0 0 8px 8px;
-  margin-top: -5px;
-  margin-left: 10px;
-  max-width: 100%; /* Ensure suggestions don't exceed parent's width */
-  overflow-x: auto; /* Scroll horizontally if suggestion is too wide */
-}
-
-.user-input {
-  background-color: transparent;
-  position: relative;
-  z-index: 2;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .submit-button {
@@ -149,15 +119,22 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%;
+  width: auto; 
 }
 
 .weight-input {
+  width: 50%; 
   padding: 0.7rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   background: #353547;
-  color: azure;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.5);
   text-align: left;
-  width: auto; /* Adjust width as needed */
+  box-sizing: border-box; 
+}
+
+.dropdown-container {
+  width: 50%; 
+  box-sizing: border-box; 
 }
