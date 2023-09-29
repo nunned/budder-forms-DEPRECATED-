@@ -24,7 +24,7 @@ function ReplaceVPT() {
     "1A40E0100019269000000082",
     "1A40E0100019269000000083",
   ];
-  
+
   const tags = [
     "1A40E0100019269000000064",
     "1A40E0100019269000000065",
@@ -37,6 +37,9 @@ function ReplaceVPT() {
     "1A40E0100019269000000072",
     "1A40E0100019269000000073",
   ];
+  // temp solution
+  const trimmedSourceTags = sourceTags.map((tag) => tag.slice(-8));
+  const trimmedTags = tags.map((tag) => tag.slice(-8));
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -58,14 +61,14 @@ function ReplaceVPT() {
   return (
     <div className="form-wrap">
       <div className="form-container">
-        <Form_header text="Replace Vegetative Plants Tag"/>
+        <Form_header text="Replace Vegetative Plants Tag" />
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
-            <div className="itm-container">
+              <div className="itm-container">
                 <p>Source Tag</p>
                 <AutoComplete
-                  options={sourceTags}
+                  options={trimmedSourceTags}
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,
@@ -77,7 +80,7 @@ function ReplaceVPT() {
               <div className="itm-container">
                 <p>New Tag</p>
                 <AutoComplete
-                  options={tags}
+                  options={trimmedTags}
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,
