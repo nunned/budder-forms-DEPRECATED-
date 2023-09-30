@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import "./customDropdown.css";
+import "./CustomDropdown.css";
 import downarrow from "../../../assets/downarrow.svg";
 
 function CustomDropdown({ options, name, onChange, text = null }) {
