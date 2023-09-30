@@ -5,6 +5,7 @@ import AssignTTVP from '../components/forms/veg/assignTTVP';
 import ReplaceVPT from '../components/forms/veg/replaceVPT';
 import ChangeVPS from '../components/forms/veg/changeVPS';
 import ChangeVPL from '../components/forms/veg/changeVPL';
+import ChangeVPGP from '../components/forms/veg/changeVPGP';
 
 function VegPage() {
   return (
@@ -19,6 +20,7 @@ function VegPage() {
       <ReplaceVPT />
       <ChangeVPS />
       <ChangeVPL />
+      <ChangeVPGP />
       {/* forms */}
     </div>
   );

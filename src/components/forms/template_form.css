@@ -46,6 +46,16 @@
   align-items: flex-start;
 }
 
+.itm-container.custom-header {
+  margin-bottom: 1rem;
+  font-weight: 600;
+  background-color: #4A59FF; 
+  padding: 10px 20px; 
+  border-radius: 8px;
+}
+
+
+
 .itm-container input[type="text"] {
   display: flex;
   padding: 10px 78px 10px 20px;

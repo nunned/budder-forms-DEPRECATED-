@@ -20,6 +20,8 @@
 - RecordPBW = Record Plant Batch Waste
 - AssignTTVP = assign tags to vegetative plants
 - ReplaceVPT = replace vegetative plants tag
+- ChangeVPS = Change Vegetative Plants Strain
+- changeVPGP = Change Vegetative Plants Growth Phase
 
 # Important Notes
 
