@@ -1,6 +1,7 @@
 // WastePage.jsx
 
 import { Link } from 'react-router-dom';
+import RecordLPW from '../components/forms/waste/recordLPW';
 
 function WastePage() {
   return (
@@ -11,7 +12,7 @@ function WastePage() {
           <li><Link to="/">Home</Link></li>
         </ul>
       </nav>
-      <>Coming Soon</>
+      <RecordLPW />
       {/* forms */}
     </div>
   );

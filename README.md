@@ -22,6 +22,7 @@
 - ReplaceVPT = replace vegetative plants tag
 - ChangeVPS = Change Vegetative Plants Strain
 - changeVPGP = Change Vegetative Plants Growth Phase
+- recordLPW = record Location Plants Waste
 
 # Important Notes
 
