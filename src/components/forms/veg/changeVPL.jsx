@@ -4,7 +4,7 @@ import { useState } from "react";
 import DatePicker from "../form-comps/datepicker";
 import AutoComplete from "../../AutoComplete";
 
-function ReplaceVPT() {
+function ChangeVPL() {
   const [formData, setFormData] = useState({
     sourceTag: "",
     location: "",
@@ -94,4 +94,4 @@ function ReplaceVPT() {
   );
 }
 
-export default ReplaceVPT;
+export default ChangeVPL;

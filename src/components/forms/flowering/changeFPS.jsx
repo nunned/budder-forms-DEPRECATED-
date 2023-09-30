@@ -1,15 +1,12 @@
 import "../template_form.css";
 import Form_header from "../form-comps/form_header";
 import { useState } from "react";
-import DatePicker from "../form-comps/datepicker";
 import AutoComplete from "../../AutoComplete";
 
-function ChangeVPGP() {
+function ChangeFPS() {
   const [formData, setFormData] = useState({
     sourceTag: "",
-    newPhase: "flowering",
-    newLocation: "",
-    changeDate: "",
+    newTag: "",
   });
 
   //These need to be made dynamic
@@ -26,18 +23,9 @@ function ChangeVPGP() {
     "1A40E0100019269000000083",
   ];
 
-  const locations = ["BREEDING", "CLONE", "DRYING", "MOTHER", "VEGETATIVE"];
-
+  const strains = ["Apple Fritter", "RAW", "Forum", "Runtz"];
   // temp solution
   const trimmedSourceTags = sourceTags.map((tag) => tag.slice(-8));
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -51,13 +39,10 @@ function ChangeVPGP() {
   return (
     <div className="form-wrap">
       <div className="form-container">
-        <Form_header text="Change Vegetative Plants Growth Phase" />
+        <Form_header text="Change Flowering Plants Strain" />
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
-              <div className="itm-container custom-header">
-                <p>Changing Phase to Flowering</p>
-              </div>
               <div className="itm-container">
                 <p>Source Tag</p>
                 <AutoComplete
@@ -71,22 +56,17 @@ function ChangeVPGP() {
                 />
               </div>
               <div className="itm-container">
-                <p>New Location</p>
+                <p>New Strain</p>
                 <AutoComplete
-                  options={locations}
+                  options={strains}
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,
-                      newLocation: selectedValue,
+                      newTag: selectedValue,
                     }));
                   }}
                 />
               </div>
-              <DatePicker
-                dateTitle="Change Date"
-                onChange={handleChange}
-                name="changeDate"
-              />
             </div>
             <button type="submit" className="submit-button">
               Submit
@@ -98,4 +78,4 @@ function ChangeVPGP() {
   );
 }
 
-export default ChangeVPGP;
+export default ChangeFPS;

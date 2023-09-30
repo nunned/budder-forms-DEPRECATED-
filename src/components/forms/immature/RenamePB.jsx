@@ -1,5 +1,5 @@
 import "../template_form.css";
-import Form_header from "../folder-comp/form_header";
+import Form_header from "../form-comps/form_header";
 import { useState } from "react";
 import AutoComplete from "../../AutoComplete";
 

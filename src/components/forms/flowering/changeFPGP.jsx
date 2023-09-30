@@ -4,10 +4,10 @@ import { useState } from "react";
 import DatePicker from "../form-comps/datepicker";
 import AutoComplete from "../../AutoComplete";
 
-function ChangeVPGP() {
+function ChangeFPGP() {
   const [formData, setFormData] = useState({
     sourceTag: "",
-    newPhase: "flowering",
+    newPhase: "vegetative",
     newLocation: "",
     changeDate: "",
   });
@@ -51,12 +51,12 @@ function ChangeVPGP() {
   return (
     <div className="form-wrap">
       <div className="form-container">
-        <Form_header text="Change Vegetative Plants Growth Phase" />
+        <Form_header text="Change Flowering Plants Growth Phase" />
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
               <div className="itm-container custom-header">
-                <p>Changing Phase to Flowering</p>
+                <p>Changing Phase to Vegetative</p>
               </div>
               <div className="itm-container">
                 <p>Source Tag</p>
@@ -98,4 +98,4 @@ function ChangeVPGP() {
   );
 }
 
-export default ChangeVPGP;
+export default ChangeFPGP;

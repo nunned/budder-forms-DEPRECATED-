@@ -1,8 +1,8 @@
 import "../template_form.css";
-import Form_header from "../folder-comp/form_header";
-import CustomDropdown from "../folder-comp/CustomDropdown";
+import Form_header from "../form-comps/form_header";
+import CustomDropdown from "../form-comps/CustomDropdown";
 import { useState } from "react";
-import DatePicker from "../folder-comp/datepicker";
+import DatePicker from "../form-comps/datepicker";
 import AutoComplete from "../../AutoComplete";
 
 function ChangeIPGP() {

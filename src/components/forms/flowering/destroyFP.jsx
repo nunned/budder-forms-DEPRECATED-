@@ -3,44 +3,44 @@ import Form_header from "../form-comps/form_header";
 import { useState } from "react";
 import DatePicker from "../form-comps/datepicker";
 import AutoComplete from "../../AutoComplete";
+import CustomDropdown from "../form-comps/CustomDropdown";
 
-function CreateImmPlantPackages() {
+function DestroyFP() {
   const [showOverlay, setShowOverlay] = useState(false);
 
   const [formData, setFormData] = useState({
-    groupName: "",
-    newTag: "",
-    location: "",
-    item: "",
-    packageDate: "",
-    plantCount: "",
-    note: "",
+    sourceTag: "",
+    destroyDate: "",
+    reason: "",
+    destroyNote: "",
   });
 
-  const groupNames = ["B. Kush 5-30", "A. Kush 20-40", "C. Kush 80-160"];
-
-  //Type="Medical Package", Status="Received",Comissioned="05/20/2022 12:50 am"
-  const newTags = [
-    "1A40E0100019269000000064",
-    "1A40E0100019269000000065",
-    "1A40E0100019269000000066",
-    "1A40E0100019269000000067",
-    "1A40E0100019269000000068",
-    "1A40E0100019269000000069",
-    "1A40E0100019269000000070",
-    "1A40E0100019269000000071",
-    "1A40E0100019269000000072",
-    "1A40E0100019269000000073",
+  //These need to be made dynamic
+  const sourceTags = [
+    "1A40E0100019269000000074",
+    "1A40E0100019269000000075",
+    "1A40E0100019269000000076",
+    "1A40E0100019269000000077",
+    "1A40E0100019269000000078",
+    "1A40E0100019269000000079",
+    "1A40E0100019269000000080",
+    "1A40E0100019269000000081",
+    "1A40E0100019269000000082",
+    "1A40E0100019269000000083",
   ];
 
-  const locations = ["BREEDING", "CLONE", "DRYING", "MOTHER", "VEGETATIVE"];
-
-  const items = [
-    "Apple Fritter Clones",
-    "Forum Clones",
-    "RAW Clones",
-    "Runtz Clones",
+  const reasons = [
+    "Beginning Inventory Reconciliation",
+    "Damage/Spoilage",
+    "Disease/Infestation",
+    "Male Plant",
+    "Mandatory State Destruction",
+    "Mother Plant Destruction",
+    "Trimming/Pruning",
   ];
+
+  // temp solution
+  const trimmedSourceTags = sourceTags.map((tag) => tag.slice(-8));
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -77,73 +77,35 @@ function CreateImmPlantPackages() {
   return (
     <div className="form-wrap">
       <div className="form-container">
-        <Form_header text="Create Immature Plants Packages" />
+        <Form_header text="Change Flowering Plants Location" />
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
               <div className="itm-container">
-                <p>Group Name</p>
+                <p>Source Tag</p>
                 <AutoComplete
-                  options={groupNames}
+                  options={trimmedSourceTags}
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,
-                      groupName: selectedValue,
+                      sourceTag: selectedValue,
                     }));
                   }}
-                />
-              </div>
-              <div className="itm-container">
-                <p>New Tag</p>
-                <AutoComplete
-                  options={newTags}
-                  onChange={(selectedValue) => {
-                    setFormData((prevData) => ({
-                      ...prevData,
-                      newTag: selectedValue,
-                    }));
-                  }}
-                />
-              </div>
-              <div className="itm-container">
-                <p>Location</p>
-                <AutoComplete
-                  options={locations}
-                  onChange={(selectedValue) => {
-                    setFormData((prevData) => ({
-                      ...prevData,
-                      location: selectedValue,
-                    }));
-                  }}
-                />
-              </div>
-              <div className="itm-container">
-                <p>Item</p>
-                <AutoComplete
-                  options={items}
-                  onChange={(selectedValue) => {
-                    setFormData((prevData) => ({
-                      ...prevData,
-                      item: selectedValue,
-                    }));
-                  }}
-                />
-              </div>
-              <div className="itm-container">
-                <p>Plants Count</p>
-                <input
-                  type="text"
-                  name="plantCount"
-                  placeholder="ex. 100"
-                  value={formData.plantCount}
-                  onChange={handleChange}
                 />
               </div>
               <DatePicker
-                dateTitle="Package Date"
+                dateTitle="Destroy Date"
                 onChange={handleChange}
-                name="packageDate"
+                name="destroyDate"
               />
+              <>
+                <CustomDropdown
+                  text="Reason"
+                  options={reasons}
+                  name="reason"
+                  onChange={handleChange}
+                />
+              </>
               <div className="itm-container">
                 <p>Notes</p>
                 <input
@@ -185,4 +147,4 @@ function CreateImmPlantPackages() {
   );
 }
 
-export default CreateImmPlantPackages;
+export default DestroyFP;

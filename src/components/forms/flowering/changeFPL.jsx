@@ -4,12 +4,11 @@ import { useState } from "react";
 import DatePicker from "../form-comps/datepicker";
 import AutoComplete from "../../AutoComplete";
 
-function ChangeVPGP() {
+function ChangeFPL() {
   const [formData, setFormData] = useState({
     sourceTag: "",
-    newPhase: "flowering",
-    newLocation: "",
-    changeDate: "",
+    location: "",
+    moveDate: "",
   });
 
   //These need to be made dynamic
@@ -51,13 +50,10 @@ function ChangeVPGP() {
   return (
     <div className="form-wrap">
       <div className="form-container">
-        <Form_header text="Change Vegetative Plants Growth Phase" />
+        <Form_header text="Change Flowering Plants Location" />
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
-              <div className="itm-container custom-header">
-                <p>Changing Phase to Flowering</p>
-              </div>
               <div className="itm-container">
                 <p>Source Tag</p>
                 <AutoComplete
@@ -77,15 +73,15 @@ function ChangeVPGP() {
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,
-                      newLocation: selectedValue,
+                      location: selectedValue,
                     }));
                   }}
                 />
               </div>
               <DatePicker
-                dateTitle="Change Date"
+                dateTitle="Move Date"
                 onChange={handleChange}
-                name="changeDate"
+                name="moveDate"
               />
             </div>
             <button type="submit" className="submit-button">
@@ -98,4 +94,4 @@ function ChangeVPGP() {
   );
 }
 
-export default ChangeVPGP;
+export default ChangeFPL;

@@ -4,32 +4,17 @@ import { useState } from "react";
 import DatePicker from "../form-comps/datepicker";
 import AutoComplete from "../../AutoComplete";
 
-function ChangeVPGP() {
+function FloweringPCBL() {
   const [formData, setFormData] = useState({
-    sourceTag: "",
-    newPhase: "flowering",
+    sourceLocation: "",
+    newPhase: "vegetative",
     newLocation: "",
     changeDate: "",
   });
 
   //These need to be made dynamic
-  const sourceTags = [
-    "1A40E0100019269000000074",
-    "1A40E0100019269000000075",
-    "1A40E0100019269000000076",
-    "1A40E0100019269000000077",
-    "1A40E0100019269000000078",
-    "1A40E0100019269000000079",
-    "1A40E0100019269000000080",
-    "1A40E0100019269000000081",
-    "1A40E0100019269000000082",
-    "1A40E0100019269000000083",
-  ];
 
   const locations = ["BREEDING", "CLONE", "DRYING", "MOTHER", "VEGETATIVE"];
-
-  // temp solution
-  const trimmedSourceTags = sourceTags.map((tag) => tag.slice(-8));
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -51,25 +36,30 @@ function ChangeVPGP() {
   return (
     <div className="form-wrap">
       <div className="form-container">
-        <Form_header text="Change Vegetative Plants Growth Phase" />
+        <Form_header text="Flowering Plants Changes by Location" />
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
               <div className="itm-container custom-header">
-                <p>Changing Phase to Flowering</p>
+                <p>Changing Phase to Vegetative</p>
               </div>
               <div className="itm-container">
-                <p>Source Tag</p>
+                <p>Source Location</p>
                 <AutoComplete
-                  options={trimmedSourceTags}
+                  options={locations}
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,
-                      sourceTag: selectedValue,
+                      sourceLocation: selectedValue,
                     }));
                   }}
                 />
               </div>
+              <DatePicker
+                dateTitle="Change Date"
+                onChange={handleChange}
+                name="changeDate"
+              />
               <div className="itm-container">
                 <p>New Location</p>
                 <AutoComplete
@@ -82,11 +72,6 @@ function ChangeVPGP() {
                   }}
                 />
               </div>
-              <DatePicker
-                dateTitle="Change Date"
-                onChange={handleChange}
-                name="changeDate"
-              />
             </div>
             <button type="submit" className="submit-button">
               Submit
@@ -98,4 +83,4 @@ function ChangeVPGP() {
   );
 }
 
-export default ChangeVPGP;
+export default FloweringPCBL;

@@ -1,6 +1,12 @@
 // FlowerPage.jsx
 
 import { Link } from 'react-router-dom';
+import ReplaceFPT from '../components/forms/flowering/replaceFPT';
+import ChangeFPS from '../components/forms/flowering/changeFPS';
+import ChangeFPL from '../components/forms/flowering/changeFPL';
+import ChangeFPGP from '../components/forms/flowering/changeFPGP';
+import FloweringPCBL from '../components/forms/flowering/floweringPCBL';
+import DestroyFP from '../components/forms/flowering/destroyFP';
 
 function FlowerPage() {
   return (
@@ -11,7 +17,12 @@ function FlowerPage() {
           <li><Link to="/">Home</Link></li>
         </ul>
       </nav>
-      <>Coming Soon</>
+      <ReplaceFPT />
+      <ChangeFPS />
+      <ChangeFPL />
+      <ChangeFPGP />
+      <FloweringPCBL />
+      <DestroyFP />
       {/* forms */}
     </div>
   );

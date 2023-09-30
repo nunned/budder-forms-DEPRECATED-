@@ -23,6 +23,8 @@
 - ChangeVPS = Change Vegetative Plants Strain
 - changeVPGP = Change Vegetative Plants Growth Phase
 - recordLPW = record Location Plants Waste
+- replaceFPT = Replace Flowering Plants Tags
+- floweringPCBL = flowering plants change by location
 
 # Important Notes
 
