@@ -1,10 +1,10 @@
 import "../template_form.css";
-import Form_header from "../folder-comp/form_header";
+import Form_header from "../form-comps/form_header";
 import { useState } from "react";
-import DatePicker from "../folder-comp/datepicker";
+import DatePicker from "../form-comps/datepicker";
 import AutoComplete from "../../AutoComplete";
-import CustomDropdown from "../folder-comp/CustomDropdown";
-import WeightComp from "../folder-comp/WeightComp";
+import CustomDropdown from "../form-comps/CustomDropdown";
+import WeightComp from "../form-comps/WeightComp";
 
 function RecordPBW() {
   const [showOverlay, setShowOverlay] = useState(false);
