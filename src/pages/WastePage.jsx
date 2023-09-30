@@ -11,7 +11,7 @@ function WastePage() {
           <li><Link to="/">Home</Link></li>
         </ul>
       </nav>
-      <>test</>
+      <>Coming Soon</>
       {/* forms */}
     </div>
   );
