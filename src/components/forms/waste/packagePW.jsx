@@ -205,12 +205,16 @@ function PackagePW() {
                 <input
                   type="number"
                   value={numPlants}
-                  onChange={(e) =>
-                    setNumPlants(Math.min(500, Number(e.target.value)))
-                  } // Limit to 500
-                  onKeyPress={(e) => e.key === "Enter" && e.preventDefault()} // Prevent form submission on Enter
+                  onChange={(e) => {
+                    const value = Math.max(
+                      1,
+                      Math.min(500, Number(e.target.value))
+                    ); // Clamp the value between 1 and 500
+                    setNumPlants(value);
+                  }}
+                  onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
                   min="1"
-                  max="500" // Set maximum value
+                  max="500" 
                   placeholder="500 max" // Set placeholder
                   className="number-input number-input-ppw" // Add a class for styling
                 />

@@ -2,7 +2,7 @@ import "../template_form.css";
 import AutoComplete from "../../AutoComplete";
 import PropTypes from "prop-types";
 
-function PlantNumComp({ onDataChange }) {
+function PlantNumComp({ itemNumber, onDataChange }) {
   const sourceTags = [
     "1A40E0100019269000000074",
     "1A40E0100019269000000075",
@@ -20,7 +20,7 @@ function PlantNumComp({ onDataChange }) {
 
   return (
     <div className="itm-container">
-      <p>Plant Num</p>
+      <p>Plant Num #{itemNumber}</p> {/* Using itemNumber here */}
       <AutoComplete
         options={trimmedSourceTags}
         onChange={(selectedValue) => {
@@ -32,6 +32,7 @@ function PlantNumComp({ onDataChange }) {
 }
 
 PlantNumComp.propTypes = {
+  itemNumber: PropTypes.number.isRequired, // Adding itemNumber to propTypes
   onDataChange: PropTypes.func.isRequired,
 };
 

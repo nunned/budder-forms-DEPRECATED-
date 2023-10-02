@@ -25,7 +25,6 @@ function RecordVPW() {
       return { ...prevData, plantNums: newPlantNums };
     });
   }, [numPlants]);
-  
 
   const [activeNote, setActiveNote] = useState("");
 
@@ -38,8 +37,6 @@ function RecordVPW() {
     wasteDate: "",
     plantNums: [],
   });
-
-
 
   const reasons = [
     "Beginning Inventory Reconciliation",
@@ -197,25 +194,38 @@ function RecordVPW() {
                 onChange={handleChange}
                 name="wasteDate"
               />
-              <div className="plant-list">
-                <div className="itm-container">
-                  <p>Number of Plants</p>
-                  <input
-                    type="number"
-                    value={numPlants}
-                    onChange={(e) => setNumPlants(Number(e.target.value))}
-                    onKeyPress={(e) => e.key === "Enter" && e.preventDefault()} // Prevent form submission on Enter
-                    min="1"
-                    className="number-input" // Add a class for styling
-                  />
-                </div>
-                {Array.from({ length: numPlants }, (_, index) => (
-                  <PlantNumComp
-                    key={index}
-                    onDataChange={(data) => handlePlantDataChange(data, index)}
-                  />
-                ))}
+              <div className="itm-container">
+                <p>Number of Plants</p>
+                <input
+                  type="number"
+                  value={numPlants}
+                  onChange={(e) => {
+                    const value = Math.max(
+                      0,
+                      Math.min(500, Number(e.target.value))
+                    ); // Clamp the value between 0 and 500
+                    setNumPlants(value);
+                  }}
+                  onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
+                  min="1"
+                  max="500" // Set maximum value
+                  placeholder="500 max" // Set placeholder
+                  className="number-input" // Add a class for styling
+                />
               </div>
+              {numPlants > 0 && (
+                <div className="plant-list">
+                  {Array.from({ length: numPlants }, (_, index) => (
+                    <PlantNumComp
+                      key={index}
+                      itemNumber={index + 1} // Passing index + 1 as itemNumber
+                      onDataChange={(data) =>
+                        handlePlantDataChange(data, index)
+                      }
+                    />
+                  ))}
+                </div>
+              )}
             </div>
             <button type="submit" className="submit-button">
               Submit
