@@ -2,11 +2,10 @@ import "../template_form.css";
 import Form_header from "../form-comps/form_header";
 import { useState, useEffect, useCallback } from "react";
 import DatePicker from "../form-comps/datepicker";
-import CustomDropdown from "../form-comps/CustomDropdown";
-import WeightComp from "../form-comps/WeightComp";
+import AutoComplete from "../../AutoComplete";
 import PlantNumComp from "../form-comps/PlantNumComp";
 
-function RecordVPW() {
+function CreateVPP() {
   const [showOverlay, setShowOverlay] = useState(false);
 
   const [numPlants, setNumPlants] = useState(1);
@@ -25,36 +24,57 @@ function RecordVPW() {
       return { ...prevData, plantNums: newPlantNums };
     });
   }, [numPlants]);
-  
 
   const [activeNote, setActiveNote] = useState("");
 
   const [formData, setFormData] = useState({
-    wasteMethod: "",
-    materialMixed: "",
-    wasteWeight: "",
-    reason: "",
-    optionalNote: "",
-    wasteDate: "",
+    newTag: "",
+    location: "",
+    item: "",
+    plantDate: "",
+    note: "",
     plantNums: [],
   });
 
+  // commented out because logic still needs to be transferred
+  // from the plantnumcomp
+  //   const sourceTags = [
+  //     "1A40E0100019269000000074",
+  //     "1A40E0100019269000000075",
+  //     "1A40E0100019269000000076",
+  //     "1A40E0100019269000000077",
+  //     "1A40E0100019269000000078",
+  //     "1A40E0100019269000000079",
+  //     "1A40E0100019269000000080",
+  //     "1A40E0100019269000000081",
+  //     "1A40E0100019269000000082",
+  //     "1A40E0100019269000000083",
+  //   ];
+  // temp solution
+  //   const trimmedSourceTags = sourceTags.map((tag) => tag.slice(-8));
 
-
-  const reasons = [
-    "Beginning Inventory Reconciliation",
-    "Damage/Spoilage",
-    "Disease/Infestation",
-    "Male Plant",
-    "Mandatory State Destruction",
-    "Mother Plant Destruction",
-    "Trimming/Pruning",
+  //These need to be made dynamic
+  const tags = [
+    "1A40E0100019269000000064",
+    "1A40E0100019269000000065",
+    "1A40E0100019269000000066",
+    "1A40E0100019269000000067",
+    "1A40E0100019269000000068",
+    "1A40E0100019269000000069",
+    "1A40E0100019269000000070",
+    "1A40E0100019269000000071",
+    "1A40E0100019269000000072",
+    "1A40E0100019269000000073",
   ];
-  const wasteMethods = [
-    "Burn",
-    "Compost",
-    "Made Uncrecognizable & Unusable",
-    "Waste Disposal Transfer",
+  const trimmedTags = tags.map((tag) => tag.slice(-8));
+
+  const locations = ["BREEDING", "CLONE", "DRYING", "MOTHER", "VEGETATIVE"];
+
+  const items = [
+    "Apple Fritter Clones",
+    "Forum Clones",
+    "RAW Clones",
+    "Runtz Clones",
   ];
 
   const handleChange = (event) => {
@@ -92,82 +112,56 @@ function RecordVPW() {
   return (
     <div className="form-wrap">
       <div className="form-container">
-        <Form_header text="Record Vegetative Plants Waste" />
+        <Form_header text="Create Vegetative Plants Package" />
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
-              <>
-                <CustomDropdown
-                  text="Waste Method"
-                  options={wasteMethods}
-                  name="wasteMethod"
-                  onChange={handleChange}
-                />
-              </>
               <div className="itm-container">
-                <p>Material Mixed</p>
-                <input
-                  type="text"
-                  name="materialMixed"
-                  placeholder="Click to add notes..."
-                  value={formData.materialMixed}
-                  onClick={() => {
-                    setShowOverlay(true);
-                    setActiveNote("materialMixed");
-                  }}
-                  readOnly
-                />
-              </div>
-              {showOverlay && (
-                <div className="overlay">
-                  <textarea
-                    value={formData[activeNote]}
-                    onChange={handleChange}
-                    name={activeNote}
-                    rows="5"
-                    cols="30"
-                  ></textarea>
-                  <button
-                    onClick={(event) => {
-                      event.preventDefault();
-                      handleNoteSubmit(activeNote);
-                      setShowOverlay(false);
-                    }}
-                  >
-                    Done
-                  </button>
-                </div>
-              )}
-
-              <div className="itm-container">
-                <p>Waste Weight</p>
-                <WeightComp
-                  onChange={(data) => {
+                <p>New Tag</p>
+                <AutoComplete
+                  options={trimmedTags}
+                  onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,
-                      wasteWeight: data,
+                      newTag: selectedValue,
                     }));
                   }}
                 />
               </div>
-              <>
-                <CustomDropdown
-                  text="Reason"
-                  options={reasons}
-                  name="reason"
-                  onChange={handleChange}
-                />
-              </>
               <div className="itm-container">
-                <p>Optional Note</p>
+                <p>Location</p>
+                <AutoComplete
+                  options={locations}
+                  onChange={(selectedValue) => {
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      location: selectedValue,
+                    }));
+                  }}
+                />
+              </div>
+              <div className="itm-container">
+                <p>Item</p>
+                <AutoComplete
+                  options={items}
+                  onChange={(selectedValue) => {
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      item: selectedValue,
+                    }));
+                  }}
+                />
+              </div>
+              <div className="itm-container">
+                <p>Note</p>
                 <input
                   type="text"
-                  name="optionalNote"
+                  name="note"
                   placeholder="Click to add notes..."
-                  value={formData.optionalNote}
+                  value={formData.note}
                   onClick={() => {
                     setShowOverlay(true);
-                    setActiveNote("optionalNote");
+                    setActiveNote("note");
                   }}
                   readOnly
                 />
@@ -193,9 +187,9 @@ function RecordVPW() {
                 </div>
               )}
               <DatePicker
-                dateTitle="Waste Date"
+                dateTitle="Planting Date"
                 onChange={handleChange}
-                name="wasteDate"
+                name="plantDate"
               />
               <div className="plant-list">
                 <div className="itm-container">
@@ -227,4 +221,4 @@ function RecordVPW() {
   );
 }
 
-export default RecordVPW;
+export default CreateVPP;

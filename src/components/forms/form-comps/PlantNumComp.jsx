@@ -1,23 +1,8 @@
 import "../template_form.css";
-import { useState, useEffect } from "react";
 import AutoComplete from "../../AutoComplete";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 function PlantNumComp({ onDataChange }) {
-  const [formData, setFormData] = useState({
-    groupName: "",
-    newPhase: "",
-    newLocation: "",
-    plantsCount: "",
-    startingTag: "",
-    endingTag: "",
-    changeDate: "",
-  });
-
-  useEffect(() => {
-    onDataChange(formData); // Notify parent component of changes to formData
-  }, [formData, onDataChange]);
-
   const sourceTags = [
     "1A40E0100019269000000074",
     "1A40E0100019269000000075",
@@ -39,10 +24,7 @@ function PlantNumComp({ onDataChange }) {
       <AutoComplete
         options={trimmedSourceTags}
         onChange={(selectedValue) => {
-          setFormData((prevData) => ({
-            ...prevData,
-            sourceTag: selectedValue,
-          }));
+          onDataChange({ sourceTag: selectedValue }); // Notify parent component directly here
         }}
       />
     </div>
@@ -50,7 +32,7 @@ function PlantNumComp({ onDataChange }) {
 }
 
 PlantNumComp.propTypes = {
-    onDataChange: PropTypes.func.isRequired,
+  onDataChange: PropTypes.func.isRequired,
 };
 
 export default PlantNumComp;
