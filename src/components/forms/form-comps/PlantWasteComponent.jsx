@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import AutoComplete from "../../AutoComplete";
 
-function PlantWasteComponent({ userPlaceholder, onDataChange }) {
+function PlantWasteComponent({ itemNumber, userPlaceholder, onDataChange }) {
   const [formData, setFormData] = useState({
     plantWasteNum: "",
     quantity: "",
@@ -57,7 +57,7 @@ function PlantWasteComponent({ userPlaceholder, onDataChange }) {
 
   return (
     <div className="itm-container plant-waste-component">
-      <p>Plant Waste</p>
+      <p>Plant Waste #{itemNumber}</p>
       <AutoComplete options={wasteNums} onChange={handlePlantWasteChange} />
       <WeightComp
         onChange={handleQuantityChange}
@@ -69,8 +69,9 @@ function PlantWasteComponent({ userPlaceholder, onDataChange }) {
 }
 
 PlantWasteComponent.propTypes = {
+  itemNumber: PropTypes.number.isRequired,
   userPlaceholder: PropTypes.string.isRequired,
-  onDataChange: PropTypes.func.isRequired, 
+  onDataChange: PropTypes.func.isRequired,
 };
 
 export default PlantWasteComponent;

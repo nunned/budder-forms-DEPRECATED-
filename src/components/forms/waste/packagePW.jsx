@@ -197,19 +197,20 @@ function PackagePW() {
               )}
               <div className="plant-list">
                 <div className="itm-container">
-                  <p>Number of Plants</p>
+                  <p>Plant Waste Items</p>
                   <input
                     type="number"
                     value={numPlants}
                     onChange={(e) => setNumPlants(Number(e.target.value))}
                     onKeyPress={(e) => e.key === "Enter" && e.preventDefault()} // Prevent form submission on Enter
                     min="1"
-                    className="number-input" // Add a class for styling
+                    className="number-input number-input-ppw" // Add a class for styling
                   />
                 </div>
                 {Array.from({ length: numPlants }, (_, index) => (
                   <PlantWasteComponent
                     key={index}
+                    itemNumber={index + 1} // Pass the index + 1 as itemNumber
                     userPlaceholder="ex. 100"
                     onDataChange={(data) => handlePlantDataChange(data, index)}
                   />
