@@ -5,18 +5,31 @@ import DatePicker from "../form-comps/datepicker";
 import AutoComplete from "../../AutoComplete";
 import CustomDropdown from "../form-comps/CustomDropdown";
 
-function DestroyIP() {
+function DestroyVP() {
   const [showOverlay, setShowOverlay] = useState(false);
 
   const [formData, setFormData] = useState({
-    groupName: "",
-    plantCount: "",
+    plantTag: "",
     reason: "",
     destroyDate: "",
     note: "",
   });
 
-  const groupNames = ["B. Kush 5-30", "A. Kush 20-40", "C. Kush 80-160"];
+  const sourceTags = [
+    "1A40E0100019269000000074",
+    "1A40E0100019269000000075",
+    "1A40E0100019269000000076",
+    "1A40E0100019269000000077",
+    "1A40E0100019269000000078",
+    "1A40E0100019269000000079",
+    "1A40E0100019269000000080",
+    "1A40E0100019269000000081",
+    "1A40E0100019269000000082",
+    "1A40E0100019269000000083",
+  ];
+
+  // temp solution
+  const trimmedSourceTags = sourceTags.map((tag) => tag.slice(-8));
 
   const reasons = [
     "Beginning Inventory Reconciliation",
@@ -63,30 +76,20 @@ function DestroyIP() {
   return (
     <div className="form-wrap">
       <div className="form-container">
-        <Form_header text="Destroy Immature Plants" />
+        <Form_header text="Destroy Vegetative Plants" />
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
               <div className="itm-container">
-                <p>Group Name</p>
+                <p>Plant Tag</p>
                 <AutoComplete
-                  options={groupNames}
+                  options={trimmedSourceTags}
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,
-                      groupName: selectedValue,
+                      plantTag: selectedValue,
                     }));
                   }}
-                />
-              </div>
-              <div className="itm-container">
-                <p>Plants Count</p>
-                <input
-                  type="text"
-                  name="plantCount"
-                  placeholder="ex. 100"
-                  value={formData.plantCount}
-                  onChange={handleChange}
                 />
               </div>
               <>
@@ -143,4 +146,4 @@ function DestroyIP() {
   );
 }
 
-export default DestroyIP;
+export default DestroyVP;

@@ -6,6 +6,9 @@ import ReplaceVPT from '../components/forms/veg/replaceVPT';
 import ChangeVPS from '../components/forms/veg/changeVPS';
 import ChangeVPL from '../components/forms/veg/changeVPL';
 import ChangeVPGP from '../components/forms/veg/changeVPGP';
+import VegPCBL from '../components/forms/veg/VegPCBL';
+import DestroyVP from '../components/forms/veg/destroyVP';
+import RecordVPW from '../components/forms/veg/recordVPW';
 
 function VegPage() {
   return (
@@ -21,6 +24,9 @@ function VegPage() {
       <ChangeVPS />
       <ChangeVPL />
       <ChangeVPGP />
+      <VegPCBL />
+      <DestroyVP />
+      <RecordVPW />
       {/* forms */}
     </div>
   );

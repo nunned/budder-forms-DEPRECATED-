@@ -157,3 +157,29 @@
   width: 50%;
   box-sizing: border-box;
 }
+
+.itm-container .number-input {
+  display: flex;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #353547;
+  color: azure;
+  text-align: left;
+  width: 100%; 
+}
+
+.itm-container .number-input::placeholder {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.plant-list {
+  background-color:rgba(90, 157, 161, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  padding: 5px 15px;
+  border-radius: 15px;
+  margin-top: 0.5rem;
+}

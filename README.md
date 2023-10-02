@@ -25,6 +25,8 @@
 - recordLPW = record Location Plants Waste
 - replaceFPT = Replace Flowering Plants Tags
 - floweringPCBL = flowering plants change by location
+- VegPCBL = vegetative plants changes by location
+- recordVPW = record vegetative plants waste
 
 # Important Notes
 
