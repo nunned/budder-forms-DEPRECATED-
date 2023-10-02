@@ -1,6 +1,6 @@
 import "../template_form.css";
 import Form_header from "../form-comps/form_header";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import DatePicker from "../form-comps/datepicker";
 import AutoComplete from "../../AutoComplete";
 import WeightComp from "../form-comps/WeightComp";
@@ -11,13 +11,18 @@ function PackagePW() {
 
   const [numPlants, setNumPlants] = useState(1);
 
-  const handlePlantDataChange = (data, index) => {
+  const handlePlantDataChange = useCallback((data, index) => {
     setFormData((prevData) => {
       const newPlantWasteItems = [...prevData.plantWasteItems];
-      newPlantWasteItems[index] = data; // Directly save the data object
-      return { ...prevData, plantWasteItems: newPlantWasteItems };
+      // Only update if data is different
+      if (JSON.stringify(newPlantWasteItems[index]) !== JSON.stringify(data)) {
+        newPlantWasteItems[index] = data;
+        return { ...prevData, plantWasteItems: newPlantWasteItems };
+      }
+      // Return previous state if no change
+      return prevData;
     });
-  };
+  }, []); // Add dependencies if needed
 
   const [activeNote, setActiveNote] = useState("");
   const [formData, setFormData] = useState({
@@ -195,27 +200,36 @@ function PackagePW() {
                   </button>
                 </div>
               )}
-              <div className="plant-list">
-                <div className="itm-container">
-                  <p>Plant Waste Items</p>
-                  <input
-                    type="number"
-                    value={numPlants}
-                    onChange={(e) => setNumPlants(Number(e.target.value))}
-                    onKeyPress={(e) => e.key === "Enter" && e.preventDefault()} // Prevent form submission on Enter
-                    min="1"
-                    className="number-input number-input-ppw" // Add a class for styling
-                  />
-                </div>
-                {Array.from({ length: numPlants }, (_, index) => (
-                  <PlantWasteComponent
-                    key={index}
-                    itemNumber={index + 1} // Pass the index + 1 as itemNumber
-                    userPlaceholder="ex. 100"
-                    onDataChange={(data) => handlePlantDataChange(data, index)}
-                  />
-                ))}
+              <div className="itm-container">
+                <p>Plant Waste Items</p>
+                <input
+                  type="number"
+                  value={numPlants}
+                  onChange={(e) =>
+                    setNumPlants(Math.min(500, Number(e.target.value)))
+                  } // Limit to 500
+                  onKeyPress={(e) => e.key === "Enter" && e.preventDefault()} // Prevent form submission on Enter
+                  min="1"
+                  max="500" // Set maximum value
+                  placeholder="500 max" // Set placeholder
+                  className="number-input number-input-ppw" // Add a class for styling
+                />
               </div>
+              {numPlants > 0 && (
+                <div className="plant-list">
+                  <div className="itm-container plant-waste-header"></div>
+                  {Array.from({ length: numPlants }, (_, index) => (
+                    <PlantWasteComponent
+                      key={index}
+                      itemNumber={index + 1} // Pass the index + 1 as itemNumber
+                      userPlaceholder="ex. 100"
+                      onDataChange={(data) =>
+                        handlePlantDataChange(data, index)
+                      }
+                    />
+                  ))}
+                </div>
+              )}
             </div>
             <button type="submit" className="submit-button">
               Submit

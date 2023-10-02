@@ -182,6 +182,8 @@
   padding: 5px 15px;
   border-radius: 15px;
   margin-top: 0.5rem;
+  max-height: calc(10* 44px);
+  overflow-y: auto;
 }
 
 .itm-container input[type="text"], .autocomplete-input {
@@ -199,4 +201,8 @@
   border-radius: 8px;
   padding: 10px;
   margin-bottom: 10px;
+}
+
+.itm-container.plant-waste-header {
+  margin-bottom: 10px; /* Adjust the value as needed */
 }
