@@ -1,7 +1,7 @@
 /* template_form.css */
 * {
   text-align: center;
-  box-sizing: border-box; /* This will ensure padding and borders are included in element dimensions */
+  box-sizing: border-box; 
 }
 
 .form-wrap {
@@ -186,11 +186,17 @@
 
 .itm-container input[type="text"], .autocomplete-input {
   width: 100%; 
-  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  box-sizing: border-box; 
 }
 
-/* If you have specific width requirements, you can set a max-width */
 .itm-container, .autocomplete {
   max-width: 500px; 
-  width: 100%; /* Set width to 100% */
+  width: 100%; 
+}
+
+.plant-waste-component {
+  background-color: #4a59ff; /* Replace with your desired color */
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
 }

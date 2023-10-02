@@ -1,18 +1,18 @@
 import "../template_form.css";
 import WeightComp from "./WeightComp";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import AutoComplete from "../../AutoComplete";
 
-function PlantWasteComponent() {
+function PlantWasteComponent({ userPlaceholder, onDataChange }) {
   const [formData, setFormData] = useState({
-    groupName: "",
-    newPhase: "",
-    newLocation: "",
-    plantsCount: "",
-    startingTag: "",
-    endingTag: "",
-    changeDate: "",
+    plantWasteNum: "",
+    quantity: "",
   });
+
+  useEffect(() => {
+    onDataChange(formData); // Pass the data up whenever it changes
+  }, [formData, onDataChange]);
 
   const wasteNums = [
     "0004471741",
@@ -26,38 +26,51 @@ function PlantWasteComponent() {
     "0004471749",
     "0004471750",
   ];
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+
+  const quantityOptions = [
+    "Each",
+    "Fluid Ounces",
+    "Gallons",
+    "Grams",
+    "Kilograms",
+    "Liters",
+    "Milligrams",
+    "Milliliters",
+    "Ounces",
+    "Pints",
+    "Quarts",
+  ];
+
+  const handlePlantWasteChange = (selectedValue) => {
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
+      plantWasteNum: selectedValue,
     }));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // TODO: Push formData to your backend
-    console.log(formData);
-
-    const newWindow = window.open("", "_blank");
-    newWindow.document.write(`<pre>${JSON.stringify(formData, null, 2)}</pre>`);
+  const handleQuantityChange = (quantityData) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      quantity: quantityData,
+    }));
   };
 
   return (
-    <div className="itm-container">
+    <div className="itm-container plant-waste-component">
       <p>Plant Waste</p>
-      <AutoComplete
-        options={wasteNums}
-        onChange={(selectedValue) => {
-          setFormData((prevData) => ({
-            ...prevData,
-            sourceTag: selectedValue,
-          }));
-        }}
+      <AutoComplete options={wasteNums} onChange={handlePlantWasteChange} />
+      <WeightComp
+        onChange={handleQuantityChange}
+        options={quantityOptions}
+        placeholder={userPlaceholder}
       />
-      <WeightComp />
     </div>
   );
 }
+
+PlantWasteComponent.propTypes = {
+  userPlaceholder: PropTypes.string.isRequired,
+  onDataChange: PropTypes.func.isRequired, 
+};
 
 export default PlantWasteComponent;

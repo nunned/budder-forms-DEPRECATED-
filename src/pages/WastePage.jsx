@@ -2,6 +2,7 @@
 
 import { Link } from 'react-router-dom';
 import RecordLPW from '../components/forms/waste/recordLPW';
+import PackagePW from '../components/forms/waste/packagePW';
 
 function WastePage() {
   return (
@@ -13,7 +14,7 @@ function WastePage() {
         </ul>
       </nav>
       <RecordLPW />
-      {/* forms */}
+      <PackagePW />
     </div>
   );
 }

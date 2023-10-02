@@ -22,6 +22,7 @@
   text-align: left;
   width: 100%;
   /* this min-width will fuck with the whole container */
+  /* it is added to show full width of tag number */
   min-width: 280px;
   margin-bottom: 5px;
   box-sizing: border-box;

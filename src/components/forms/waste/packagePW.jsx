@@ -3,40 +3,68 @@ import Form_header from "../form-comps/form_header";
 import { useState } from "react";
 import DatePicker from "../form-comps/datepicker";
 import AutoComplete from "../../AutoComplete";
-import CustomDropdown from "../form-comps/CustomDropdown";
 import WeightComp from "../form-comps/WeightComp";
+import PlantWasteComponent from "../form-comps/PlantWasteComponent";
 
 function PackagePW() {
-    const [showOverlay, setShowOverlay] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
+
+  const [numPlants, setNumPlants] = useState(1);
+
+  const handlePlantDataChange = (data, index) => {
+    setFormData((prevData) => {
+      const newPlantWasteItems = [...prevData.plantWasteItems];
+      newPlantWasteItems[index] = data; // Directly save the data object
+      return { ...prevData, plantWasteItems: newPlantWasteItems };
+    });
+  };
 
   const [activeNote, setActiveNote] = useState("");
   const [formData, setFormData] = useState({
     newTag: "",
     location: "",
     item: "",
-    wasteWeight: "",
-    reason: "",
-    optionalNote: "",
-    wasteDate: "",
+    quantity: "",
+    packageDate: "",
+    note: "",
+    plantWasteItems: [],
   });
 
   //These need to be made dynamic
   const locations = ["BREEDING", "CLONE", "DRYING", "MOTHER", "VEGETATIVE"];
 
-  const reasons = [
-    "Beginning Inventory Reconciliation",
-    "Damage/Spoilage",
-    "Disease/Infestation",
-    "Male Plant",
-    "Mandatory State Destruction",
-    "Mother Plant Destruction",
-    "Trimming/Pruning",
+  const tags = [
+    "1A40E0100019269000000064",
+    "1A40E0100019269000000065",
+    "1A40E0100019269000000066",
+    "1A40E0100019269000000067",
+    "1A40E0100019269000000068",
+    "1A40E0100019269000000069",
+    "1A40E0100019269000000070",
+    "1A40E0100019269000000071",
+    "1A40E0100019269000000072",
+    "1A40E0100019269000000073",
   ];
-  const wasteMethods = [
-    "Burn",
-    "Compost",
-    "Made Uncrecognizable & Unusable",
-    "Waste Disposal Transfer",
+
+  const items = [
+    "Apple Fritter Clones",
+    "Forum Clones",
+    "RAW Clones",
+    "Runtz Clones",
+  ];
+
+  const quantityOptions = [
+    "Each",
+    "Fluid Ounces",
+    "Gallons",
+    "Grams",
+    "Kilograms",
+    "Liters",
+    "Milligrams",
+    "Milliliters",
+    "Ounces",
+    "Pints",
+    "Quarts",
   ];
 
   const handleChange = (event) => {
@@ -79,6 +107,18 @@ function PackagePW() {
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
               <div className="itm-container">
+                <p>New Tag</p>
+                <AutoComplete
+                  options={tags}
+                  onChange={(selectedValue) => {
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      newTag: selectedValue,
+                    }));
+                  }}
+                />
+              </div>
+              <div className="itm-container">
                 <p>Location</p>
                 <AutoComplete
                   options={locations}
@@ -90,77 +130,47 @@ function PackagePW() {
                   }}
                 />
               </div>
-              <>
-                <CustomDropdown
-                  text="Waste Method"
-                  options={wasteMethods}
-                  name="wasteMethod"
-                  onChange={handleChange}
-                />
-              </>
               <div className="itm-container">
-                <p>Material Mixed</p>
-                <input
-                  type="text"
-                  name="materialMixed"
-                  placeholder="Click to add notes..."
-                  value={formData.materialMixed}
-                  onClick={() => {
-                    setShowOverlay(true);
-                    setActiveNote("materialMixed");
+                <p>Item</p>
+                <AutoComplete
+                  options={items}
+                  onChange={(selectedValue) => {
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      item: selectedValue,
+                    }));
                   }}
-                  readOnly
                 />
               </div>
-              {showOverlay && (
-                <div className="overlay">
-                  <textarea
-                    value={formData[activeNote]}
-                    onChange={handleChange}
-                    name={activeNote}
-                    rows="5"
-                    cols="30"
-                  ></textarea>
-                  <button
-                    onClick={(event) => {
-                      event.preventDefault();
-                      handleNoteSubmit(activeNote);
-                      setShowOverlay(false);
-                    }}
-                  >
-                    Done
-                  </button>
-                </div>
-              )}
               <div className="itm-container">
-                <p>Waste Weight</p>
+                <p>Quantity</p>
                 <WeightComp
+                  options={quantityOptions}
                   onChange={(data) => {
                     setFormData((prevData) => ({
                       ...prevData,
-                      wasteWeight: data,
+                      quantity: data,
                     }));
                   }}
                 />
               </div>
               <>
-                <CustomDropdown
-                  text="Reason"
-                  options={reasons}
-                  name="reason"
+                <DatePicker
+                  dateTitle="Package Date"
                   onChange={handleChange}
+                  name="packageDate"
                 />
               </>
               <div className="itm-container">
-                <p>Optional Note</p>
+                <p>Note</p>
                 <input
                   type="text"
-                  name="optionalNote"
+                  name="note"
                   placeholder="Click to add notes..."
-                  value={formData.optionalNote}
+                  value={formData.note}
                   onClick={() => {
                     setShowOverlay(true);
-                    setActiveNote("optionalNote");
+                    setActiveNote("note");
                   }}
                   readOnly
                 />
@@ -185,12 +195,26 @@ function PackagePW() {
                   </button>
                 </div>
               )}
-
-              <DatePicker
-                dateTitle="Waste Date"
-                onChange={handleChange}
-                name="wasteDate"
-              />
+              <div className="plant-list">
+                <div className="itm-container">
+                  <p>Number of Plants</p>
+                  <input
+                    type="number"
+                    value={numPlants}
+                    onChange={(e) => setNumPlants(Number(e.target.value))}
+                    onKeyPress={(e) => e.key === "Enter" && e.preventDefault()} // Prevent form submission on Enter
+                    min="1"
+                    className="number-input" // Add a class for styling
+                  />
+                </div>
+                {Array.from({ length: numPlants }, (_, index) => (
+                  <PlantWasteComponent
+                    key={index}
+                    userPlaceholder="ex. 100"
+                    onDataChange={(data) => handlePlantDataChange(data, index)}
+                  />
+                ))}
+              </div>
             </div>
             <button type="submit" className="submit-button">
               Submit
@@ -201,6 +225,5 @@ function PackagePW() {
     </div>
   );
 }
-
 
 export default PackagePW;

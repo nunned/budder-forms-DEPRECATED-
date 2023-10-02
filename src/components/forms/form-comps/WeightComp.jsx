@@ -1,9 +1,9 @@
 import { useState } from "react";
 import CustomDropdown from "./CustomDropdown";
 import "../template_form.css";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-function WeightComp({ onChange }) {
+function WeightComp({ onChange, options, placeholder }) {
   const [weight, setWeight] = useState("");
   const [unit, setUnit] = useState(null);
 
@@ -24,11 +24,11 @@ function WeightComp({ onChange }) {
         value={weight}
         onChange={handleWeightChange}
         className="weight-input"
-        placeholder="Weight"
+        placeholder={placeholder || "Weight"}
       />
       <div className="dropdown-container">
         <CustomDropdown
-          options={["Grams", "Kilograms", "Milligrams", "Ounces", "Pounds"]}
+          options={options}
           name="unit"
           onChange={handleUnitChange}
         />
@@ -39,6 +39,13 @@ function WeightComp({ onChange }) {
 
 WeightComp.propTypes = {
   onChange: PropTypes.func,
+  options: PropTypes.arrayOf(PropTypes.string),
+  placeholder: PropTypes.string, 
+};
+
+WeightComp.defaultProps = {
+  options: ["Grams", "Kilograms", "Milligrams", "Ounces", "Pounds"], 
+  placeholder: "Weight", 
 };
 
 export default WeightComp;
