@@ -27,6 +27,7 @@
 - floweringPCBL = flowering plants change by location
 - VegPCBL = vegetative plants changes by location
 - recordVPW = record vegetative plants waste
+- createPFVP = create plantings from vegetative plants
 
 # Important Notes
 

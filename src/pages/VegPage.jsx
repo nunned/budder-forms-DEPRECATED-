@@ -9,6 +9,7 @@ import ChangeVPGP from '../components/forms/veg/changeVPGP';
 import VegPCBL from '../components/forms/veg/VegPCBL';
 import DestroyVP from '../components/forms/veg/destroyVP';
 import RecordVPW from '../components/forms/veg/recordVPW';
+import CreatePFVP from '../components/forms/veg/createPFVP';
 
 function VegPage() {
   return (
@@ -27,6 +28,7 @@ function VegPage() {
       <VegPCBL />
       <DestroyVP />
       <RecordVPW />
+      <CreatePFVP />
       {/* forms */}
     </div>
   );
