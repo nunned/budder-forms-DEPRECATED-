@@ -24,8 +24,6 @@ function ChangeFPS() {
   ];
 
   const strains = ["Apple Fritter", "RAW", "Forum", "Runtz"];
-  // temp solution
-  const trimmedSourceTags = sourceTags.map((tag) => tag.slice(-8));
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -46,7 +44,7 @@ function ChangeFPS() {
               <div className="itm-container">
                 <p>Source Tag</p>
                 <AutoComplete
-                  options={trimmedSourceTags}
+                  options={sourceTags}
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,

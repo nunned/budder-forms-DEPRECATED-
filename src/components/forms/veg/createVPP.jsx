@@ -66,7 +66,6 @@ function CreateVPP() {
     "1A40E0100019269000000072",
     "1A40E0100019269000000073",
   ];
-  const trimmedTags = tags.map((tag) => tag.slice(-8));
 
   const locations = ["BREEDING", "CLONE", "DRYING", "MOTHER", "VEGETATIVE"];
 
@@ -119,7 +118,7 @@ function CreateVPP() {
               <div className="itm-container">
                 <p>New Tag</p>
                 <AutoComplete
-                  options={trimmedTags}
+                  options={tags}
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,
@@ -152,6 +151,11 @@ function CreateVPP() {
                   }}
                 />
               </div>
+              <DatePicker
+                dateTitle="Planting Date"
+                onChange={handleChange}
+                name="plantDate"
+              />
               <div className="itm-container">
                 <p>Note</p>
                 <input
@@ -186,11 +190,6 @@ function CreateVPP() {
                   </button>
                 </div>
               )}
-              <DatePicker
-                dateTitle="Planting Date"
-                onChange={handleChange}
-                name="plantDate"
-              />
               <div className="plant-list">
                 <div className="itm-container">
                   <p>Number of Plants</p>

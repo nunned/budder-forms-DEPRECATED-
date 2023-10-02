@@ -28,6 +28,8 @@
 - VegPCBL = vegetative plants changes by location
 - recordVPW = record vegetative plants waste
 - createPFVP = create plantings from vegetative plants
+- createVPP = create vegetative plants package
+- manicureVP = manicure vegetative plants
 
 # Important Notes
 

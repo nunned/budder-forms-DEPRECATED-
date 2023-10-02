@@ -11,6 +11,7 @@ import DestroyVP from '../components/forms/veg/destroyVP';
 import RecordVPW from '../components/forms/veg/recordVPW';
 import CreatePFVP from '../components/forms/veg/createPFVP';
 import CreateVPP from '../components/forms/veg/createVPP';
+import ManicureVP from '../components/forms/veg/manicureVP';
 
 function VegPage() {
   return (
@@ -31,6 +32,7 @@ function VegPage() {
       <RecordVPW />
       <CreatePFVP />
       <CreateVPP />
+      <ManicureVP />
       {/* forms */}
     </div>
   );

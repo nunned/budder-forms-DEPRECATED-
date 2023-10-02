@@ -1,20 +1,23 @@
 import "../template_form.css";
 import Form_header from "../form-comps/form_header";
 import { useState } from "react";
-import DatePicker from "../form-comps/datepicker";
 import AutoComplete from "../../AutoComplete";
-import CustomDropdown from "../form-comps/CustomDropdown";
+import WeightComp from "../form-comps/WeightComp";
+import DatePicker from "../form-comps/datepicker";
 
-function DestroyVP() {
+function ManicureVP() {
   const [showOverlay, setShowOverlay] = useState(false);
+  const [activeNote, setActiveNote] = useState("");
 
   const [formData, setFormData] = useState({
-    plantTag: "",
-    reason: "",
-    destroyDate: "",
-    note: "",
+    sourceTag: "",
+    harvestName: "",
+    weight: "",
+    dryingLocation: "",
+    manicureDate: "",
   });
 
+  //These need to be made dynamic
   const sourceTags = [
     "1A40E0100019269000000074",
     "1A40E0100019269000000075",
@@ -28,15 +31,7 @@ function DestroyVP() {
     "1A40E0100019269000000083",
   ];
 
-  const reasons = [
-    "Beginning Inventory Reconciliation",
-    "Damage/Spoilage",
-    "Disease/Infestation",
-    "Male Plant",
-    "Mandatory State Destruction",
-    "Mother Plant Destruction",
-    "Trimming/Pruning",
-  ];
+  const locations = ["BREEDING", "CLONE", "DRYING", "MOTHER", "VEGETATIVE"];
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -55,9 +50,9 @@ function DestroyVP() {
     }, "");
   };
 
-  const handleNoteSubmit = () => {
-    const wrappedNote = wrapNote(formData.note);
-    setFormData((prev) => ({ ...prev, note: wrappedNote }));
+  const handleNoteSubmit = (noteName) => {
+    const wrappedNote = wrapNote(formData[noteName]);
+    setFormData((prev) => ({ ...prev, [noteName]: wrappedNote }));
   };
 
   const handleSubmit = (event) => {
@@ -73,58 +68,49 @@ function DestroyVP() {
   return (
     <div className="form-wrap">
       <div className="form-container">
-        <Form_header text="Destroy Vegetative Plants" />
+        <Form_header text="Manicure Vegetative Plants" />
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
               <div className="itm-container">
-                <p>Plant Tag</p>
+                <p>Source Tag</p>
                 <AutoComplete
                   options={sourceTags}
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,
-                      plantTag: selectedValue,
+                      sourceTag: selectedValue,
                     }));
                   }}
                 />
               </div>
-              <>
-                <CustomDropdown
-                  text="Reason"
-                  options={reasons}
-                  name="reason"
-                  onChange={handleChange}
-                />
-              </>
-              <DatePicker
-                dateTitle="Destroy Date"
-                onChange={handleChange}
-                name="destroyDate"
-              />
               <div className="itm-container">
-                <p>Notes</p>
+                <p>Harvest Name</p>
                 <input
                   type="text"
-                  name="note"
+                  name="harvestName"
                   placeholder="Click to add notes..."
-                  value={formData.note}
-                  onClick={() => setShowOverlay(true)}
+                  value={formData.harvestName}
+                  onClick={() => {
+                    setShowOverlay(true);
+                    setActiveNote("harvestName");
+                  }}
                   readOnly
                 />
               </div>
               {showOverlay && (
                 <div className="overlay">
                   <textarea
-                    value={formData.note}
+                    value={formData[activeNote]}
                     onChange={handleChange}
-                    name="note"
+                    name={activeNote}
                     rows="5"
                     cols="30"
                   ></textarea>
                   <button
-                    onClick={() => {
-                      handleNoteSubmit();
+                    onClick={(event) => {
+                      event.preventDefault();
+                      handleNoteSubmit(activeNote);
                       setShowOverlay(false);
                     }}
                   >
@@ -132,6 +118,34 @@ function DestroyVP() {
                   </button>
                 </div>
               )}
+              <div className="itm-container">
+                <p>Weight</p>
+                <WeightComp
+                  onChange={(data) => {
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      weight: data,
+                    }));
+                  }}
+                />
+              </div>
+              <div className="itm-container">
+                <p>Drying Location</p>
+                <AutoComplete
+                  options={locations}
+                  onChange={(selectedValue) => {
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      dryingLocation: selectedValue,
+                    }));
+                  }}
+                />
+              </div>
+              <DatePicker
+                dateTitle="Manicure Date"
+                onChange={handleChange}
+                name="manicureDate"
+              />
             </div>
             <button type="submit" className="submit-button">
               Submit
@@ -143,4 +157,4 @@ function DestroyVP() {
   );
 }
 
-export default DestroyVP;
+export default ManicureVP;

@@ -10,6 +10,7 @@
   flex-direction: column;
   width: auto;
   border-radius: 10px;
+  width: 100%;
 }
 
 .autocomplete-input {
@@ -20,7 +21,10 @@
   color: azure;
   text-align: left;
   width: 100%;
+  /* this min-width will fuck with the whole container */
+  min-width: 280px;
   margin-bottom: 5px;
+  box-sizing: border-box;
 }
 
 input:focus {

@@ -183,3 +183,14 @@
   border-radius: 15px;
   margin-top: 0.5rem;
 }
+
+.itm-container input[type="text"], .autocomplete-input {
+  width: 100%; 
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+/* If you have specific width requirements, you can set a max-width */
+.itm-container, .autocomplete {
+  max-width: 500px; 
+  width: 100%; /* Set width to 100% */
+}

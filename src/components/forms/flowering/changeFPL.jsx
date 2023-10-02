@@ -27,9 +27,6 @@ function ChangeFPL() {
 
   const locations = ["BREEDING", "CLONE", "DRYING", "MOTHER", "VEGETATIVE"];
 
-  // temp solution
-  const trimmedSourceTags = sourceTags.map((tag) => tag.slice(-8));
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({
@@ -57,7 +54,7 @@ function ChangeFPL() {
               <div className="itm-container">
                 <p>Source Tag</p>
                 <AutoComplete
-                  options={trimmedSourceTags}
+                  options={sourceTags}
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,
