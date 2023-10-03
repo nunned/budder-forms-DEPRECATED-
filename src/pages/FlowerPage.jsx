@@ -10,6 +10,7 @@ import DestroyFP from '../components/forms/flowering/destroyFP';
 import RecordFPW from '../components/forms/flowering/recordFPW';
 import CreatePFFP from '../components/forms/flowering/createPFFP';
 import ManicureFP from '../components/forms/flowering/manicureFP';
+import HarvestFP from '../components/forms/flowering/harvestFP';
 
 function FlowerPage() {
   return (
@@ -29,6 +30,7 @@ function FlowerPage() {
       <RecordFPW />
       <CreatePFFP />
       <ManicureFP />
+      <HarvestFP />
     </div>
   );
 }

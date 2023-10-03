@@ -9,6 +9,8 @@ function ManicureFP() {
   const [showOverlay, setShowOverlay] = useState(false);
   const [activeNote, setActiveNote] = useState("");
 
+  const [mode, setMode] = useState("single");
+
   const [formData, setFormData] = useState({
     sourceTag: "",
     harvestName: "",
@@ -72,6 +74,27 @@ function ManicureFP() {
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
+              <div className="itm-container toggle-container">
+                <label>
+                  <input
+                    type="radio"
+                    value="single"
+                    checked={mode === "single"}
+                    onChange={(e) => setMode(e.target.value)}
+                  />
+                  Single
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    value="multi"
+                    checked={mode === "multi"}
+                    onChange={(e) => setMode(e.target.value)}
+                  />
+                  Multi
+                </label>
+              </div>
+
               <div className="itm-container">
                 <p>Source Tag</p>
                 <AutoComplete

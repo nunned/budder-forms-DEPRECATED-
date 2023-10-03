@@ -8,6 +8,7 @@ import PlantNumComp from "../form-comps/PlantNumComp";
 
 function RecordVPW() {
   const [showOverlay, setShowOverlay] = useState(false);
+  const [activeNote, setActiveNote] = useState("");
 
   const [numPlants, setNumPlants] = useState(1);
 
@@ -25,8 +26,6 @@ function RecordVPW() {
       return { ...prevData, plantNums: newPlantNums };
     });
   }, [numPlants]);
-
-  const [activeNote, setActiveNote] = useState("");
 
   const [formData, setFormData] = useState({
     wasteMethod: "",

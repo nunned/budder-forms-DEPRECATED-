@@ -206,3 +206,9 @@
 .itm-container.plant-waste-header {
   margin-bottom: 10px; /* Adjust the value as needed */
 }
+
+.template-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
