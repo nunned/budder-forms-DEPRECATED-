@@ -5,7 +5,7 @@ import DatePicker from "../form-comps/datepicker";
 import AutoComplete from "../../AutoComplete";
 import CustomDropdown from "../form-comps/CustomDropdown";
 
-function CreatePFVP() {
+function CreatePFFP() {
   const [formData, setFormData] = useState({
     sourcePlant: "",
     groupName: "",
@@ -54,7 +54,7 @@ function CreatePFVP() {
   return (
     <div className="form-wrap">
       <div className="form-container">
-        <Form_header text="Create Plantings from Vegetative Plants" />
+        <Form_header text="Create Plantings from Flowering Plants" />
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
@@ -138,4 +138,4 @@ function CreatePFVP() {
   );
 }
 
-export default CreatePFVP;
+export default CreatePFFP;

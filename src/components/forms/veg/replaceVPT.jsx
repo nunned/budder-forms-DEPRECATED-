@@ -37,9 +37,6 @@ function ReplaceVPT() {
     "1A40E0100019269000000072",
     "1A40E0100019269000000073",
   ];
-  // temp solution
-  const trimmedSourceTags = sourceTags.map((tag) => tag.slice(-8));
-  const trimmedTags = tags.map((tag) => tag.slice(-8));
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -68,7 +65,7 @@ function ReplaceVPT() {
               <div className="itm-container">
                 <p>Source Tag</p>
                 <AutoComplete
-                  options={trimmedSourceTags}
+                  options={sourceTags}
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,
@@ -80,7 +77,7 @@ function ReplaceVPT() {
               <div className="itm-container">
                 <p>New Tag</p>
                 <AutoComplete
-                  options={trimmedTags}
+                  options={tags}
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,

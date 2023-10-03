@@ -39,9 +39,6 @@ function DestroyFP() {
     "Trimming/Pruning",
   ];
 
-  // temp solution
-  const trimmedSourceTags = sourceTags.map((tag) => tag.slice(-8));
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({
@@ -60,8 +57,8 @@ function DestroyFP() {
   };
 
   const handleNoteSubmit = () => {
-    const wrappedNote = wrapNote(formData.note);
-    setFormData((prev) => ({ ...prev, note: wrappedNote }));
+    const wrappedNote = wrapNote(formData.destroyNote);
+    setFormData((prev) => ({ ...prev, destroyNote: wrappedNote }));
   };
 
   const handleSubmit = (event) => {
@@ -77,14 +74,14 @@ function DestroyFP() {
   return (
     <div className="form-wrap">
       <div className="form-container">
-        <Form_header text="Change Flowering Plants Location" />
+        <Form_header text="Destroy Flowering Plants" />
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
               <div className="itm-container">
                 <p>Source Tag</p>
                 <AutoComplete
-                  options={trimmedSourceTags}
+                  options={sourceTags}
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,
@@ -110,9 +107,9 @@ function DestroyFP() {
                 <p>Notes</p>
                 <input
                   type="text"
-                  name="note"
+                  name="destroyNote"
                   placeholder="Click to add notes..."
-                  value={formData.note}
+                  value={formData.destroyNote}
                   onClick={() => setShowOverlay(true)}
                   readOnly
                 />
@@ -120,13 +117,14 @@ function DestroyFP() {
               {showOverlay && (
                 <div className="overlay">
                   <textarea
-                    value={formData.note}
+                    value={formData.destroyNote}
                     onChange={handleChange}
-                    name="note"
+                    name="destroyNote"
                     rows="5"
                     cols="30"
                   ></textarea>
                   <button
+                    type="button"
                     onClick={() => {
                       handleNoteSubmit();
                       setShowOverlay(false);

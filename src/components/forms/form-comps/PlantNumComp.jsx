@@ -16,13 +16,11 @@ function PlantNumComp({ itemNumber, onDataChange }) {
     "1A40E0100019269000000083",
   ];
 
-  const trimmedSourceTags = sourceTags.map((tag) => tag.slice(-8));
-
   return (
     <div className="itm-container">
       <p>Plant Num #{itemNumber}</p> {/* Using itemNumber here */}
       <AutoComplete
-        options={trimmedSourceTags}
+        options={sourceTags}
         onChange={(selectedValue) => {
           onDataChange({ sourceTag: selectedValue }); // Notify parent component directly here
         }}

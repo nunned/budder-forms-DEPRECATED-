@@ -1,7 +1,6 @@
 // HarvestPage.jsx
 
 import { Link } from 'react-router-dom';
-import PlantWasteComponent from '../components/forms/form-comps/PlantWasteComponent';
 
 function HarvestPage() {
   return (
@@ -13,7 +12,7 @@ function HarvestPage() {
         </ul>
       </nav>
       <>Coming Soon</>
-      <PlantWasteComponent />
+  
       {/* forms */}
     </div>
   );

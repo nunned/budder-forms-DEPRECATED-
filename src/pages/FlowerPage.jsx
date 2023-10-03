@@ -7,6 +7,8 @@ import ChangeFPL from '../components/forms/flowering/changeFPL';
 import ChangeFPGP from '../components/forms/flowering/changeFPGP';
 import FloweringPCBL from '../components/forms/flowering/floweringPCBL';
 import DestroyFP from '../components/forms/flowering/destroyFP';
+import RecordFPW from '../components/forms/flowering/recordFPW';
+import CreatePFFP from '../components/forms/flowering/createPFFP';
 
 function FlowerPage() {
   return (
@@ -23,7 +25,8 @@ function FlowerPage() {
       <ChangeFPGP />
       <FloweringPCBL />
       <DestroyFP />
-      {/* forms */}
+      <RecordFPW />
+      <CreatePFFP />
     </div>
   );
 }

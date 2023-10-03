@@ -22,20 +22,20 @@
   color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   width: auto;
+  margin-bottom: 5px;
 }
 
 .date-options {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
+  justify-content: center;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
   background-color: #292937;
-  z-index: 10;
   display: flex;
   flex-direction: row;
   gap: 5px;
   padding: 10px;
+  width: fit-content;
+  margin: auto;
 }
 
 .date-options button {
@@ -44,7 +44,7 @@
   border: none;
   padding: 10px 20px;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 0 8px 8px 0;
 }
 
 .date-options button:hover {
@@ -55,7 +55,7 @@
   padding: 10px;
   background-color: #353547;
   color: azure;
-  border-radius: 8px;
+  border-radius: 8px 0 0 8px;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
