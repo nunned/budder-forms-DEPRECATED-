@@ -6,6 +6,7 @@ import AutoComplete from "../../AutoComplete";
 function ChangePBStrains() {
   const [formData, setFormData] = useState({
     plantBatch: "",
+    ogStrain: "",
     newStrain: "",
   });
 
@@ -38,6 +39,18 @@ function ChangePBStrains() {
                     setFormData((prevData) => ({
                       ...prevData,
                       plantBatch: selectedValue,
+                    }));
+                  }}
+                />
+              </div>
+              <div className="itm-container">
+                <p>Original Strain</p>
+                <AutoComplete
+                  options={strains}
+                  onChange={(selectedValue) => {
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      ogStrain: selectedValue,
                     }));
                   }}
                 />
