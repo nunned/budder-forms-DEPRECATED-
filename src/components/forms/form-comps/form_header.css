@@ -27,7 +27,6 @@
 
 .form-bot {
   text-align: left;
-  margin-left: 21px;
   font-weight: 600;
 }
 
@@ -46,7 +45,6 @@
 
 .form-subheader {
   text-align: left;
-  margin-left: 21px;
   font-size: 0.9rem;
   font-weight: 400;
   color: #979696; /* Adjust color as needed */
