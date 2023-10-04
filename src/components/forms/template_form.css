@@ -47,13 +47,14 @@
 
 .itm-container.custom-header {
   margin-bottom: 1rem;
-  font-weight: 600;
-  background-color: #4a59ff;
+  font-weight: 400;
+  background-color: #999cc4;
   padding: 10px 20px;
-  border-radius: 8px;
+  border-radius: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: default;
 }
 
 .itm-container.custom-header p {
@@ -225,4 +226,11 @@
   color: azure;
   text-align: left;
   width: 100%;
+}
+
+.newloc-subheading {
+  font-size: 12px;
+  margin-top: -6px;
+  font-weight: 100;
+  letter-spacing: 0.5px;
 }

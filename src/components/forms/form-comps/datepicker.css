@@ -26,6 +26,10 @@
 }
 
 .date-options {
+  position: absolute; /* Set position to absolute */
+  top: 100%; /* Position it right below the .date-header */
+  left: 5%; /* Align it to the left of the .date-picker */
+  z-index: 1000; /* Optional: Set a high z-index to ensure it overlays other elements */
   justify-content: center;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 5px;

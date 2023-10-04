@@ -80,6 +80,7 @@ function ChangeIPGP() {
               </>
               <div className="itm-container">
                 <p>New Location</p>
+                <p className="newloc-subheading">optional</p>
                 <AutoComplete
                   options={locations}
                   onChange={(selectedValue) => {
