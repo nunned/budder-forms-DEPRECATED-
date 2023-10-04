@@ -1,7 +1,7 @@
 /* template_form.css */
 * {
   text-align: center;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 .form-wrap {
@@ -52,13 +52,12 @@
   padding: 10px 20px;
   border-radius: 8px;
   display: flex;
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
 }
 
-
 .itm-container.custom-header p {
-  margin: 0; 
+  margin: 0;
 }
 
 .itm-container input[type="text"] {
@@ -166,7 +165,7 @@
   background: #353547;
   color: azure;
   text-align: left;
-  width: 100%; 
+  width: 100%;
 }
 
 .itm-container .number-input::placeholder {
@@ -175,25 +174,27 @@
 }
 
 .plant-list {
-  background-color:rgba(90, 157, 161, 0.3);
+  background-color: rgba(90, 157, 161, 0.3);
   display: flex;
   flex-direction: column;
   align-self: center;
   padding: 5px 15px;
   border-radius: 15px;
   margin-top: 0.5rem;
-  max-height: calc(10* 44px);
+  max-height: calc(10 * 44px);
   overflow-y: auto;
 }
 
-.itm-container input[type="text"], .autocomplete-input {
-  width: 100%; 
-  box-sizing: border-box; 
+.itm-container input[type="text"],
+.autocomplete-input {
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.itm-container, .autocomplete {
-  max-width: 500px; 
-  width: 100%; 
+.itm-container,
+.autocomplete {
+  max-width: 500px;
+  width: 100%;
 }
 
 .plant-waste-component {
@@ -211,4 +212,17 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+
+.prefill-textarea {
+  display: flex;
+  padding: 10px 78px 10px 20px;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #353547;
+  color: azure;
+  text-align: left;
+  width: 100%;
 }

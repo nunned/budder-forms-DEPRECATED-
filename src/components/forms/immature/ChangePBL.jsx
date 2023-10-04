@@ -7,12 +7,29 @@ import DatePicker from "../form-comps/datepicker";
 function ChangePBLocation() {
   const [formData, setFormData] = useState({
     plantGroupName: "",
+    ogLocation: "",
     newLocation: "",
     moveDate: "",
   });
 
+  const plantBatchToLocation = {
+    "Plant Batch #1": "BREEDING",
+    "Plant Batch #2": "BREEDING",
+    "Plant Batch #3": "CLONE",
+    "Plant Batch #4": "MOTHER",
+    "Plant Batch #5": "VEGETATIVE",
+    "Plant Batch #6": "DRYING",
+  };
+
   //These need to be made dynamic
-  const plantBatches = ["Plant Batch #1", "Plant Batch #2", "Plant Batch #3"];
+  const plantBatches = [
+    "Plant Batch #1",
+    "Plant Batch #2",
+    "Plant Batch #3",
+    "Plant Batch #4",
+    "Plant Batch #5",
+    "Plant Batch #6",
+  ];
 
   const locations = ["BREEDING", "CLONE", "DRYING", "MOTHER", "VEGETATIVE"];
 
@@ -48,9 +65,14 @@ function ChangePBLocation() {
                     setFormData((prevData) => ({
                       ...prevData,
                       plantGroupName: selectedValue,
+                      ogLocation: plantBatchToLocation[selectedValue],
                     }));
                   }}
                 />
+              </div>
+              <div className="itm-container">
+                <p>Original Location</p>
+                <p className="prefill-textarea">{formData.ogLocation}</p>
               </div>
               <div className="itm-container">
                 <p>New Location</p>
@@ -64,7 +86,11 @@ function ChangePBLocation() {
                   }}
                 />
               </div>
-              <DatePicker dateTitle="Move Date" onChange={handleChange} name="moveDate" />
+              <DatePicker
+                dateTitle="Move Date"
+                onChange={handleChange}
+                name="moveDate"
+              />
             </div>
             <button type="submit" className="submit-button">
               Submit

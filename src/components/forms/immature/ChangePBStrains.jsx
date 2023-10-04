@@ -11,7 +11,19 @@ function ChangePBStrains() {
   });
 
   //These need to be made dynamic
-  const plantBatches = ["Plant Batch #1", "Plant Batch #2", "Plant Batch #3"];
+  const plantBatchToStrain = {
+    "Plant Batch #1": "Apple Fritter",
+    "Plant Batch #2": "RAW",
+    "Plant Batch #3": "Forum",
+    "Plant Batch #4": "Runtz",
+  };
+
+  const plantBatches = [
+    "Plant Batch #1",
+    "Plant Batch #2",
+    "Plant Batch #3",
+    "Plant Batch #4",
+  ];
 
   const strains = ["Apple Fritter", "RAW", "Forum", "Runtz"];
 
@@ -39,21 +51,14 @@ function ChangePBStrains() {
                     setFormData((prevData) => ({
                       ...prevData,
                       plantBatch: selectedValue,
+                      ogStrain: plantBatchToStrain[selectedValue],
                     }));
                   }}
                 />
               </div>
               <div className="itm-container">
                 <p>Original Strain</p>
-                <AutoComplete
-                  options={strains}
-                  onChange={(selectedValue) => {
-                    setFormData((prevData) => ({
-                      ...prevData,
-                      ogStrain: selectedValue,
-                    }));
-                  }}
-                />
+                <p className="prefill-textarea">{formData.ogStrain}</p>
               </div>
               <div className="itm-container">
                 <p>New Strain</p>

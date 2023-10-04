@@ -42,6 +42,16 @@ const AutoComplete = ({
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (onChange) {
+        onChange(value);
+      }
+      setShowSuggestions(false);
+    }
+  };
+
   return (
     <div className="autocomplete" ref={autocompleteRef}>
       <div className="input-container">
@@ -51,12 +61,9 @@ const AutoComplete = ({
           onChange={handleChange}
           placeholder="Search"
           onFocus={() => setShowSuggestions(true)}
+          onKeyDown={handleKeyDown}
         />
-        <img
-          src={magIcon}
-          alt="description"
-          className="input-svg"
-        />
+        <img src={magIcon} alt="description" className="input-svg" />
       </div>
       {showSuggestions && (
         <ul className="suggestions">
