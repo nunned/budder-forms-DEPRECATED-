@@ -2,23 +2,9 @@ import "../template_form.css";
 import AutoComplete from "../../AutoComplete";
 import PropTypes from "prop-types";
 import WeightComp from "../form-comps/WeightComp";
-import DatePicker from "../form-comps/datepicker";
 
-function HarvestItem({ itemNumber, onDataChange }) {
-  const harvestName = [
-    "1A40E0100019269000000074",
-    "1A40E0100019269000000075",
-    "1A40E0100019269000000076",
-    "1A40E0100019269000000077",
-    "1A40E0100019269000000078",
-    "1A40E0100019269000000079",
-    "1A40E0100019269000000080",
-    "1A40E0100019269000000081",
-    "1A40E0100019269000000082",
-    "1A40E0100019269000000083",
-  ];
-
-  const locations = ["BREEDING", "CLONE", "DRYING", "MOTHER", "VEGETATIVE"];
+function HarvestPItem({ itemNumber, onDataChange }) {
+  const harvestName = ["AF 02.10.2023", "GR 02.10.2023", "PBR 02.10.2023"];
 
   const handleDataChange = (name, value) => {
     onDataChange(itemNumber, { [name]: value });
@@ -29,52 +15,27 @@ function HarvestItem({ itemNumber, onDataChange }) {
       <p>Harvest Item #{itemNumber}</p>
       <div className="itm-container">
         <p>Harvest Name</p>
-        <input
-          type="text"
-          name="harvestName"
-          placeholder="Enter harvest name..."
-          onChange={(e) => handleDataChange("harvestName", e.target.value)}
-        />
-      </div>
-      <div className="itm-container">
-        <p>Source Tag</p>
         <AutoComplete
           options={harvestName}
           onChange={(selectedValue) =>
-            handleDataChange("sourceTag", selectedValue)
+            handleDataChange("harvestName", selectedValue)
           }
         />
       </div>
       <div className="itm-container">
-        <p>Weight</p>
+        <p>Quantity</p>
         <WeightComp
           onChange={(weight) => handleDataChange("weight", weight)}
           options={["Grams", "Kilograms", "Milligrams", "Ounces", "Pounds"]}
-        />
-      </div>
-      <div className="itm-container">
-        <p>Drying Location</p>
-        <AutoComplete
-          options={locations}
-          onChange={(selectedValue) =>
-            handleDataChange("dryingLocation", selectedValue)
-          }
-        />
-      </div>
-      <div className="itm-container">
-        <DatePicker
-          onChange={(e) => handleDataChange("harvestDate", e.target.value)}
-          dateTitle="Harvest Date"
-          name="harvestDate"
         />
       </div>
     </div>
   );
 }
 
-HarvestItem.propTypes = {
+HarvestPItem.propTypes = {
   itemNumber: PropTypes.number.isRequired,
   onDataChange: PropTypes.func.isRequired,
 };
 
-export default HarvestItem;
+export default HarvestPItem;

@@ -234,3 +234,11 @@
   font-weight: 100;
   letter-spacing: 0.5px;
 }
+
+.template {
+  background-color: rgba(24, 255, 178, 0.4);
+  margin: 10px 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
