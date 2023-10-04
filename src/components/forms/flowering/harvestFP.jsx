@@ -113,21 +113,21 @@ function HarvestFP() {
                   <input
                     type="radio"
                     value="single"
-                    id="single"
+                    id="harvestSingle"
                     checked={mode === "single"}
                     onChange={(e) => setMode(e.target.value)}
                   />
-                  <label htmlFor="single">Single</label>
+                  <label htmlFor="harvestSingle">Single</label>
                 </div>
                 <div className="custom-radio">
                   <input
                     type="radio"
                     value="multi"
-                    id="multi"
+                    id="harvestMulti"
                     checked={mode === "multi"}
                     onChange={(e) => setMode(e.target.value)}
                   />
-                  <label htmlFor="multi">Multi</label>
+                  <label htmlFor="harvestMulti">Multi</label>
                 </div>
               </div>
 

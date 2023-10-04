@@ -111,21 +111,21 @@ function ManicureFP() {
                   <input
                     type="radio"
                     value="single"
-                    id="single"
+                    id="maincureSingle"
                     checked={mode === "single"}
                     onChange={(e) => setMode(e.target.value)}
                   />
-                  <label htmlFor="single">Single</label>
+                  <label htmlFor="maincureSingle">Single</label>
                 </div>
                 <div className="custom-radio">
                   <input
                     type="radio"
-                    value="multi"
+                    value="maincureMulti"
                     id="multi"
                     checked={mode === "multi"}
                     onChange={(e) => setMode(e.target.value)}
                   />
-                  <label htmlFor="multi">Multi</label>
+                  <label htmlFor="maincureMulti">Multi</label>
                 </div>
               </div>
 
