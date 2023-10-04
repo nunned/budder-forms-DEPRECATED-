@@ -1,6 +1,7 @@
 // HarvestPage.jsx
 
 import { Link } from 'react-router-dom';
+import RenameH from "../components/forms/harvested/renameH"
 
 function HarvestPage() {
   return (
@@ -11,9 +12,7 @@ function HarvestPage() {
           <li><Link to="/">Home</Link></li>
         </ul>
       </nav>
-      <>Coming Soon</>
-  
-      {/* forms */}
+      <RenameH />
     </div>
   );
 }
