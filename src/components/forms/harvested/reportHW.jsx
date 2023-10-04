@@ -3,23 +3,33 @@ import Form_header from "../form-comps/form_header";
 import { useState } from "react";
 import AutoComplete from "../../AutoComplete";
 import DatePicker from "../form-comps/datepicker";
+import CustomDropdown from "../form-comps/CustomDropdown";
+import WeightComp from "../form-comps/WeightComp";
 
-function ChangePBLocation() {
+function ReportHW() {
   const [formData, setFormData] = useState({
-    plantGroupName: "",
-    ogLocation: "",
-    newLocation: "",
-    moveDate: "",
+    harvestName: "",
+    wasteType: "",
+    weight: "",
+    wasteDate: "",
   });
   //These need to be made dynamic
   const plantBatchToLocation = {
-    "Plant Batch #1": "BREEDING",
-    "Plant Batch #2": "BREEDING",
-    "Plant Batch #3": "CLONE",
-    "Plant Batch #4": "MOTHER",
-    "Plant Batch #5": "VEGETATIVE",
-    "Plant Batch #6": "DRYING",
+    "AF 02.10.2023": "RM1",
+    "GR 02.10.2023": "RM2",
+    "PBR 02.10.2023": "RM3",
+    "RAW 02.10.2023": "RM1",
+    "TT 02.10.2023": "RM3",
+    "PJ 02.10.2023": "RM3",
   };
+
+  const wasteTypes = [
+    "MMJ Clone Waste",
+    "MMJ Waste",
+    "MMJ Waste (By Count)",
+    "Rootballs, Stems, Fan leaves",
+    "Waste",
+  ];
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -41,43 +51,45 @@ function ChangePBLocation() {
   return (
     <div className="form-wrap">
       <div className="form-container">
-        <Form_header text="Change Plant Batches Location" />
+        <Form_header text="Report Harvest Waste" />
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
               <div className="itm-container">
-                <p>Group Name</p>
+                <p>Harvest Name</p>
                 <AutoComplete
                   options={Object.keys(plantBatchToLocation)}
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,
-                      plantGroupName: selectedValue,
-                      ogLocation: plantBatchToLocation[selectedValue],
+                      harvestName: selectedValue,
                     }));
                   }}
                 />
               </div>
+              <>
+                <CustomDropdown
+                  text="Waste Type"
+                  options={wasteTypes}
+                  name="wasteType"
+                  onChange={handleChange}
+                />
+              </>
               <div className="itm-container">
-                <p>Original Location</p>
-                <p className="prefill-textarea">{formData.ogLocation}</p>
-              </div>
-              <div className="itm-container">
-                <p>New Location</p>
-                <AutoComplete
-                  options={Object.values(plantBatchToLocation)}
-                  onChange={(selectedValue) => {
+                <p>Weight</p>
+                <WeightComp
+                  onChange={(data) => {
                     setFormData((prevData) => ({
                       ...prevData,
-                      newLocation: selectedValue,
+                      weight: data,
                     }));
                   }}
                 />
               </div>
               <DatePicker
-                dateTitle="Move Date"
+                dateTitle="Waste Date"
                 onChange={handleChange}
-                name="moveDate"
+                name="wasteDate"
               />
             </div>
             <button type="submit" className="submit-button">
@@ -90,4 +102,4 @@ function ChangePBLocation() {
   );
 }
 
-export default ChangePBLocation;
+export default ReportHW;

@@ -53,7 +53,8 @@ function RenamePlantBatches() {
                 <input
                   type="text"
                   name="newHarvest"
-                  placeholder="ex. AF 02.10.2023"
+                  //   placeholder="ex. AF 02.10.2023"
+                  placeholder=""
                   value={formData.newHarvest}
                   onChange={handleChange}
                 />

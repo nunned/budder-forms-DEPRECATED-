@@ -4,21 +4,21 @@ import { useState } from "react";
 import AutoComplete from "../../AutoComplete";
 import DatePicker from "../form-comps/datepicker";
 
-function ChangePBLocation() {
+function ChangeHL() {
   const [formData, setFormData] = useState({
-    plantGroupName: "",
+    harvestName: "",
     ogLocation: "",
     newLocation: "",
     moveDate: "",
   });
   //These need to be made dynamic
   const plantBatchToLocation = {
-    "Plant Batch #1": "BREEDING",
-    "Plant Batch #2": "BREEDING",
-    "Plant Batch #3": "CLONE",
-    "Plant Batch #4": "MOTHER",
-    "Plant Batch #5": "VEGETATIVE",
-    "Plant Batch #6": "DRYING",
+    "AF 02.10.2023": "RM1",
+    "GR 02.10.2023": "RM2",
+    "PBR 02.10.2023": "RM3",
+    "RAW 02.10.2023": "RM1",
+    "TT 02.10.2023": "RM3",
+    "PJ 02.10.2023": "RM3",
   };
 
   const handleSubmit = (event) => {
@@ -41,18 +41,18 @@ function ChangePBLocation() {
   return (
     <div className="form-wrap">
       <div className="form-container">
-        <Form_header text="Change Plant Batches Location" />
+        <Form_header text="Change Harvests Location" />
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
               <div className="itm-container">
-                <p>Group Name</p>
+                <p>Harvest Name</p>
                 <AutoComplete
                   options={Object.keys(plantBatchToLocation)}
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,
-                      plantGroupName: selectedValue,
+                      harvestName: selectedValue,
                       ogLocation: plantBatchToLocation[selectedValue],
                     }));
                   }}
@@ -90,4 +90,4 @@ function ChangePBLocation() {
   );
 }
 
-export default ChangePBLocation;
+export default ChangeHL;
