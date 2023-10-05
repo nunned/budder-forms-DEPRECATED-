@@ -30,7 +30,7 @@ function PlantNumComp({ itemNumber, onDataChange }) {
 }
 
 PlantNumComp.propTypes = {
-  itemNumber: PropTypes.number.isRequired, // Adding itemNumber to propTypes
+  itemNumber: PropTypes.number.isRequired,
   onDataChange: PropTypes.func.isRequired,
 };
 

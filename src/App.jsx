@@ -7,6 +7,7 @@ import VegPage from "./pages/VegPage";
 import FlowerPage from "./pages/FlowerPage";
 import WastePage from "./pages/WastePage";
 import HarvestPage from "./pages/HarvestPage";
+import AdminPage from "./pages/AdminPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/flower" element={<FlowerPage />} />
           <Route path="/waste" element={<WastePage />} />
           <Route path="/harvest" element={<HarvestPage />} />
+          <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -242,3 +242,6 @@
   border-radius: 5px;
 }
 
+.plant-list > .strain-comp {
+  margin-bottom: 20px; /* Adjust the value as needed */
+}
