@@ -1,15 +1,31 @@
 import CustomDropdown from "./CustomDropdown";
+import { useState, useEffect } from "react";
 import "../template_form.css";
 import "./strain-comp.css";
 import PropTypes from "prop-types";
 
 function StrainComp({ itemNumber, onDataChange }) {
+  const [strainData, setStrainData] = useState({
+    strainName: "",
+    testingStatus: "",
+    thcContent: "",
+    cbdContent: "",
+  });
+
+  useEffect(() => {
+    onDataChange(itemNumber, strainData);
+  }, [strainData, itemNumber, onDataChange]);
+
   const handleDataChange = (name, value) => {
-    onDataChange(itemNumber, { [name]: value });
+    setStrainData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleUnitChange = (value) => {
-    handleDataChange("testingStatus", value);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setStrainData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const testingStatuses = ["None", "In-House", "Third-Party"];
@@ -21,7 +37,7 @@ function StrainComp({ itemNumber, onDataChange }) {
           type="text"
           name="strainName"
           placeholder="Enter strain name..."
-          onChange={(e) => handleDataChange("strainName", e.target.value)}
+          onChange={handleChange} 
         />
       </div>
       <div className="itm-container">
@@ -29,17 +45,17 @@ function StrainComp({ itemNumber, onDataChange }) {
         <CustomDropdown
           options={testingStatuses}
           name="testingStatus"
-          onChange={handleUnitChange}
+          onChange={handleChange} 
         />
       </div>
-      <div className="itm-container horizontal-container">
+      <div className="itm-container">
         <div className="input-group">
           <p>THC</p>
           <input
             type="text"
             name="thcContent"
             placeholder=""
-            onChange={(e) => handleDataChange("thcContent", e.target.value)}
+            onChange={handleChange} 
           />
         </div>
         <div className="input-group">
@@ -48,7 +64,7 @@ function StrainComp({ itemNumber, onDataChange }) {
             type="text"
             name="cbdContent"
             placeholder=""
-            onChange={(e) => handleDataChange("cbdContent", e.target.value)}
+            onChange={handleChange} 
           />
         </div>
       </div>

@@ -1,9 +1,9 @@
 .horizontal-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-self: center;
-  width: min-content;
+  justify-content: center;
+  align-items: center; /* Align items vertically */
+  width: 100%; /* Adjust the width as needed */
 }
 
 .input-group {
@@ -11,3 +11,6 @@
   flex-direction: column;
 }
 
+.input-group input {
+  width: 100%; /* Make input take the full width of its container */
+}
