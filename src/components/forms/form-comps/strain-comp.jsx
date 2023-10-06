@@ -1,4 +1,5 @@
 import CustomDropdown from "./CustomDropdown";
+import CustomChecklist from "./CustomChecklist";
 import { useState, useEffect } from "react";
 import "../template_form.css";
 import "./strain-comp.css";
@@ -11,6 +12,9 @@ function StrainComp({ itemNumber, onDataChange }) {
     testingStatus: "",
     thcContent: "",
     cbdContent: "",
+    sativaPercentage: "",
+    indicaPercentage: "",
+    selectedFacilities: {},
   });
 
   const handleIndicaChange = (newIndica) => {
@@ -41,7 +45,25 @@ function StrainComp({ itemNumber, onDataChange }) {
     }));
   };
 
+  const handleFacilitiesChange = (event) => {
+    const selectedOptionsObject = event.target.value;
+    // Convert the object of selected options into an array of selected options
+    const selectedFacilities = Object.keys(selectedOptionsObject).filter(option => selectedOptionsObject[option]);
+    // Extract IDs from selected facilities and update the state
+    const selectedIDs = selectedFacilities.map(facility => facility.split('|')[1].trim());
+    setStrainData((prevData) => ({
+      ...prevData,
+      selectedFacilities: selectedIDs,
+    }));
+  };
+
   const testingStatuses = ["None", "In-House", "Third-Party"];
+  const facilities = [
+    "TRAN GLENPOOL LLC | GAAA-5ZXA-V5GY",
+    "VZN | GAAA-4Y9A-ZPOT",
+    "VZN LABS | PAAA-4227-9BUA",
+  ];
+
   return (
     <div className="itm-container strain-comp">
       <div className="itm-container">
@@ -50,7 +72,7 @@ function StrainComp({ itemNumber, onDataChange }) {
           type="text"
           name="strainName"
           placeholder="Enter strain name..."
-          onChange={handleChange} 
+          onChange={handleChange}
         />
       </div>
       <div className="itm-container">
@@ -58,7 +80,7 @@ function StrainComp({ itemNumber, onDataChange }) {
         <CustomDropdown
           options={testingStatuses}
           name="testingStatus"
-          onChange={handleChange} 
+          onChange={handleChange}
         />
       </div>
       <div className="itm-container">
@@ -68,7 +90,7 @@ function StrainComp({ itemNumber, onDataChange }) {
             type="text"
             name="thcContent"
             placeholder=""
-            onChange={handleChange} 
+            onChange={handleChange}
           />
         </div>
         <div className="input-group">
@@ -77,7 +99,7 @@ function StrainComp({ itemNumber, onDataChange }) {
             type="text"
             name="cbdContent"
             placeholder=""
-            onChange={handleChange} 
+            onChange={handleChange}
           />
         </div>
       </div>
@@ -85,6 +107,14 @@ function StrainComp({ itemNumber, onDataChange }) {
         <Percentages
           onIndicaChange={handleIndicaChange}
           onSativaChange={handleSativaChange}
+        />
+      </div>
+      <div className="itm-container">
+        <p>Facilities</p>
+        <CustomChecklist
+          options={facilities}
+          name="selectedFacilities"
+          onChange={handleFacilitiesChange} // Handle the change event from CustomChecklist
         />
       </div>
     </div>
