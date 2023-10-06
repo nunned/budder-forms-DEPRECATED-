@@ -2,6 +2,7 @@
 
 import { Link } from 'react-router-dom';
 import AddStrains from '../components/forms/admin/addStrain';
+import EditStrains from "../components/forms/admin/editStrain"
 
 function AdminPage() {
   return (
@@ -13,6 +14,7 @@ function AdminPage() {
         </ul>
       </nav>
       <AddStrains />
+      <EditStrains />
     </div>
   );
 }
