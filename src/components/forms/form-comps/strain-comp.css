@@ -14,3 +14,7 @@
 .input-group input {
   width: 100%; /* Make input take the full width of its container */
 }
+
+.custom-strain-header {
+  text-align: left;
+}

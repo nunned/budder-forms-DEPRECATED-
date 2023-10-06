@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import './Percentages.css'; // Import your CSS
+import { useState } from "react";
+import PropTypes from "prop-types";
+import "./Percentages.css"; // Import your CSS
 
-function Percentages() {
+function Percentages({ onIndicaChange, onSativaChange }) {
   const [indica, setIndica] = useState(100);
   const [sativa, setSativa] = useState(0);
 
@@ -9,12 +10,14 @@ function Percentages() {
     const newIndica = parseInt(e.target.value, 10);
     setIndica(newIndica);
     setSativa(100 - newIndica);
+    onIndicaChange(newIndica);
   };
 
   const handleSativaChange = (e) => {
     const newSativa = parseInt(e.target.value, 10);
     setSativa(newSativa);
     setIndica(100 - newSativa);
+    onSativaChange(newSativa);
   };
 
   return (
@@ -44,5 +47,10 @@ function Percentages() {
     </div>
   );
 }
+
+Percentages.propTypes = {
+  onIndicaChange: PropTypes.func.isRequired,
+  onSativaChange: PropTypes.func.isRequired,
+};
 
 export default Percentages;

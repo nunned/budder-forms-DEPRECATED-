@@ -37,7 +37,11 @@ function AddStrains() {
                 <input
                   type="number"
                   value={numStrains}
-                  onChange={(e) => setNumStrains(Math.max(0, Math.min(500, Number(e.target.value))))}
+                  onChange={(e) =>
+                    setNumStrains(
+                      Math.max(0, Math.min(500, Number(e.target.value)))
+                    )
+                  }
                   min="1"
                   max="500"
                   placeholder="500 max"

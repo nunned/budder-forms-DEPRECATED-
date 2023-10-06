@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import "../template_form.css";
 import "./strain-comp.css";
 import PropTypes from "prop-types";
+import Percentages from "../form-comps/percentages";
 
 function StrainComp({ itemNumber, onDataChange }) {
   const [strainData, setStrainData] = useState({
@@ -12,13 +13,25 @@ function StrainComp({ itemNumber, onDataChange }) {
     cbdContent: "",
   });
 
+  const handleIndicaChange = (newIndica) => {
+    setStrainData((prevData) => ({
+      ...prevData,
+      indicaPercentage: newIndica,
+      sativaPercentage: 100 - newIndica,
+    }));
+  };
+
+  const handleSativaChange = (newSativa) => {
+    setStrainData((prevData) => ({
+      ...prevData,
+      sativaPercentage: newSativa,
+      indicaPercentage: 100 - newSativa,
+    }));
+  };
+
   useEffect(() => {
     onDataChange(itemNumber, strainData);
   }, [strainData, itemNumber, onDataChange]);
-
-  const handleDataChange = (name, value) => {
-    setStrainData((prevData) => ({ ...prevData, [name]: value }));
-  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -50,7 +63,7 @@ function StrainComp({ itemNumber, onDataChange }) {
       </div>
       <div className="itm-container">
         <div className="input-group">
-          <p>THC</p>
+          <p className="custom-strain-header">THC</p>
           <input
             type="text"
             name="thcContent"
@@ -59,7 +72,7 @@ function StrainComp({ itemNumber, onDataChange }) {
           />
         </div>
         <div className="input-group">
-          <p>CBD</p>
+          <p className="custom-strain-header">CBD</p>
           <input
             type="text"
             name="cbdContent"
@@ -67,6 +80,12 @@ function StrainComp({ itemNumber, onDataChange }) {
             onChange={handleChange} 
           />
         </div>
+      </div>
+      <div className="itm-container">
+        <Percentages
+          onIndicaChange={handleIndicaChange}
+          onSativaChange={handleSativaChange}
+        />
       </div>
     </div>
   );
