@@ -85,7 +85,7 @@ function StrainComp({ itemNumber, onDataChange }) {
       </div>
       <div className="itm-container">
         <div className="input-group">
-          <p className="custom-strain-header">THC</p>
+          <p className="custom-strain-header">THC %</p>
           <input
             type="text"
             name="thcContent"
@@ -94,7 +94,7 @@ function StrainComp({ itemNumber, onDataChange }) {
           />
         </div>
         <div className="input-group">
-          <p className="custom-strain-header">CBD</p>
+          <p className="custom-strain-header">CBD %</p>
           <input
             type="text"
             name="cbdContent"
