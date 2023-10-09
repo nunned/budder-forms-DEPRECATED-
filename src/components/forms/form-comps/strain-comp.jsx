@@ -47,15 +47,14 @@ function StrainComp({ itemNumber, onDataChange }) {
 
   const handleFacilitiesChange = (event) => {
     const selectedOptionsObject = event.target.value;
-    // Convert the object of selected options into an array of selected options
     const selectedFacilities = Object.keys(selectedOptionsObject).filter(option => selectedOptionsObject[option]);
-    // Extract IDs from selected facilities and update the state
     const selectedIDs = selectedFacilities.map(facility => facility.split('|')[1].trim());
     setStrainData((prevData) => ({
       ...prevData,
-      selectedFacilities: selectedIDs,
+      selectedFacilities: selectedIDs, // Ensure this is updating the correct piece of state
     }));
   };
+  
 
   const testingStatuses = ["None", "In-House", "Third-Party"];
   const facilities = [
@@ -113,7 +112,7 @@ function StrainComp({ itemNumber, onDataChange }) {
         <p>Facilities</p>
         <CustomChecklist
           options={facilities}
-          name="selectedFacilities"
+          name="strainCompSelectedFacilities"
           onChange={handleFacilitiesChange} // Handle the change event from CustomChecklist
         />
       </div>
