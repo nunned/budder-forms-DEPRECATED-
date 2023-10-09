@@ -3,7 +3,8 @@
 # TODO list
 
 - Fix styling so placeholder text matches
-- Replace suggestions in input with autocomplete [almost done]
+- Determine which forms need single/multi mode
+    - determine on a global single/multi mode
 - fix plant group names and plant batch names
     - group name is the same as plant batch name?!
 - double check ChangeIPGP if it needs ending tags.
