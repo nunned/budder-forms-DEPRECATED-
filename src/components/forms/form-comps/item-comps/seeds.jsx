@@ -36,7 +36,8 @@ const Seeds = ({ onDataChange }) => {
         <p>Strain</p>
         <AutoComplete
           options={strains}
-          onChange={(selectedValue) => handleChange("strain", selectedValue)}
+          name="strain"
+          onChange={handleChange}
         />
       </div>
     </div>

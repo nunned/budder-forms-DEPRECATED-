@@ -18,13 +18,13 @@ import WholeWetPlant from "../form-comps/item-comps/wholewp";
 const categoryDict = {
   "Flower & Buds": FlowerBuds,
   "Immature Plants": ImmPlants,
-  "Kief": Kief,
+  Kief: Kief,
   "Mature Plants": MaturePlants,
   "MMJ Clone Waste": MMJCloneWaste,
   "MMJ Waste": MMJWaste,
   "MMJ Waste (by Count)": MMJWastebc,
   "Pre-Roll (Flower Only)": PreRoll,
-  "Seeds": Seeds,
+  Seeds: Seeds,
   "Shake/Trim": ShakeTrim,
   "Shake/Trim (by Strain)": ShakeTrimByStrain,
   "Whole Wet Plant": WholeWetPlant,
@@ -55,10 +55,19 @@ function AddItem() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    if (name === "itemType") {
+      // Reset formData when itemType changes
+      setFormData({
+        itemName: formData.itemName, // retain the itemName
+        itemType: value, // set the new itemType
+        // ... any other default values you want to retain
+      });
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   const SelectedComponent = categoryDict[formData.itemType];

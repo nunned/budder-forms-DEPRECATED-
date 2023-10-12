@@ -1,4 +1,3 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 import "../../template_form.css";
 import CustomDropdown from "../../form-comps/CustomDropdown";
@@ -6,17 +5,9 @@ import CustomDropdown from "../../form-comps/CustomDropdown";
 const MMJWaste = ({ onDataChange }) => {
   const unitOM = ["Grams", "Kilograms", "Milligrams", "Ounces", "Pounds"];
 
-  const [formData, setFormData] = useState({
-    unitOfMeasure: "",
-    strain: "",
-  });
-
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+
     onDataChange(name, value); // You might want to pass the entire formData object if necessary
   };
 

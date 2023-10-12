@@ -6,6 +6,7 @@ import magIcon from "../assets/mag_glass.svg";
 const AutoComplete = ({
   options = ["Oranges", "Apples", "Pearls"],
   onChange,
+  name,
 }) => {
   const [value, setValue] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -38,7 +39,7 @@ const AutoComplete = ({
     setValue(suggestion);
     setShowSuggestions(false);
     if (onChange) {
-      onChange(suggestion);
+      onChange({ target: { name, value: suggestion } });
     }
   };
 
@@ -46,7 +47,7 @@ const AutoComplete = ({
     if (e.key === "Enter") {
       e.preventDefault();
       if (onChange) {
-        onChange(value);
+        onChange({ target: { name, value } });
       }
       setShowSuggestions(false);
     }
@@ -84,6 +85,7 @@ const AutoComplete = ({
 AutoComplete.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func,
+  name: PropTypes.string,
 };
 
 export default AutoComplete;
