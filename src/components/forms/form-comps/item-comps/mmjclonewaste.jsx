@@ -3,7 +3,7 @@ import "../../template_form.css";
 import CustomDropdown from "../../form-comps/CustomDropdown";
 
 const MMJCloneWaste = ({ onDataChange }) => {
-  const unitOM = ["Grams", "Kilograms", "Milligrams", "Ounces", "Pounds"];
+  const unitOM = ["Each"];
 
   const handleChange = (event) => {
     const { name, value } = event.target;

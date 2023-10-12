@@ -5,7 +5,7 @@ import WeightComp from "../WeightComp";
 import AutoComplete from "../../../AutoComplete";
 
 const PreRoll = ({ onDataChange }) => {
-  const unitOM = ["Grams", "Kilograms", "Milligrams", "Ounces", "Pounds"];
+  const unitOM = ["Each"];
   const strains = ["Apple Fritter", "RAW", "Forum", "Runtz"];
 
   

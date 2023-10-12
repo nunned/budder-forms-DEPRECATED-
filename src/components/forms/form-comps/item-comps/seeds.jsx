@@ -4,7 +4,7 @@ import CustomDropdown from "../../form-comps/CustomDropdown";
 import AutoComplete from "../../../AutoComplete";
 
 const Seeds = ({ onDataChange }) => {
-  const unitOM = ["Grams", "Kilograms", "Milligrams", "Ounces", "Pounds"];
+  const unitOM = ["Each"];
   const strains = ["Apple Fritter", "RAW", "Forum", "Runtz"];
 
   const handleChange = (event) => {
