@@ -6,6 +6,7 @@ import EditStrains from "../components/forms/admin/editStrain"
 import AddLocation from '../components/forms/admin/addLocation';
 import EditLocation from '../components/forms/admin/editLocation';
 import AddItem from '../components/forms/admin/addItem';
+import EditItem from '../components/forms/admin/editItem';
 
 function AdminPage() {
   return (
@@ -21,6 +22,7 @@ function AdminPage() {
       <AddLocation />
       <EditLocation />
       <AddItem />
+      <EditItem />
     </div>
   );
 }
