@@ -1,4 +1,3 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 import "../../template_form.css";
 import CustomDropdown from "../../form-comps/CustomDropdown";
@@ -8,17 +7,9 @@ const Seeds = ({ onDataChange }) => {
   const unitOM = ["Grams", "Kilograms", "Milligrams", "Ounces", "Pounds"];
   const strains = ["Apple Fritter", "RAW", "Forum", "Runtz"];
 
-  const [formData, setFormData] = useState({
-    unitOfMeasure: "",
-    strain: "",
-  });
-
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+
     onDataChange(name, value); // You might want to pass the entire formData object if necessary
   };
 
@@ -34,11 +25,7 @@ const Seeds = ({ onDataChange }) => {
       </div>
       <div className="itm-container">
         <p>Strain</p>
-        <AutoComplete
-          options={strains}
-          name="strain"
-          onChange={handleChange}
-        />
+        <AutoComplete options={strains} name="strain" onChange={handleChange} />
       </div>
     </div>
   );
