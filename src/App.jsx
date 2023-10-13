@@ -8,6 +8,7 @@ import FlowerPage from "./pages/FlowerPage";
 import WastePage from "./pages/WastePage";
 import HarvestPage from "./pages/HarvestPage";
 import AdminPage from "./pages/AdminPage";
+import PackagesPage from "./pages/PackagesPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/waste" element={<WastePage />} />
           <Route path="/harvest" element={<HarvestPage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/packages" element={<PackagesPage />} />
         </Routes>
       </BrowserRouter>
     </div>

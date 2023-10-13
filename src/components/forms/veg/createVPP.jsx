@@ -7,8 +7,17 @@ import PlantNumComp from "../form-comps/PlantNumComp";
 
 function CreateVPP() {
   const [showOverlay, setShowOverlay] = useState(false);
-
+  const [activeNote, setActiveNote] = useState("");
   const [numPlants, setNumPlants] = useState(1);
+
+  const [formData, setFormData] = useState({
+    newTag: "",
+    location: "",
+    item: "",
+    plantDate: "",
+    note: "",
+    plantNums: [],
+  });
 
   const handlePlantDataChange = useCallback((data, index) => {
     setFormData((prevData) => {
@@ -24,17 +33,6 @@ function CreateVPP() {
       return { ...prevData, plantNums: newPlantNums };
     });
   }, [numPlants]);
-
-  const [activeNote, setActiveNote] = useState("");
-
-  const [formData, setFormData] = useState({
-    newTag: "",
-    location: "",
-    item: "",
-    plantDate: "",
-    note: "",
-    plantNums: [],
-  });
 
   //These need to be made dynamic
   const tags = [
@@ -182,12 +180,14 @@ function CreateVPP() {
                     onChange={(e) => setNumPlants(Number(e.target.value))}
                     onKeyPress={(e) => e.key === "Enter" && e.preventDefault()} // Prevent form submission on Enter
                     min="1"
+                    max="150"
                     className="number-input" // Add a class for styling
                   />
                 </div>
                 {Array.from({ length: numPlants }, (_, index) => (
                   <PlantNumComp
                     key={index}
+                    itemNumber={index + 1}
                     onDataChange={(data) => handlePlantDataChange(data, index)}
                   />
                 ))}

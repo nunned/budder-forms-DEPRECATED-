@@ -14,6 +14,7 @@ function HomePage() {
           <li><Link to="/waste">Waste Forms</Link></li>
           <li><Link to="/harvest">Harvest Forms</Link></li>
           <li><Link to="/admin">Admin Forms</Link></li>
+          <li><Link to="/packages">Packages Forms</Link></li>
           {/* Add other category links here */}
         </ul>
       </nav>

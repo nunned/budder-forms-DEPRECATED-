@@ -1,40 +1,51 @@
 import "../template_form.css";
 import Form_header from "../form-comps/form_header";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import DatePicker from "../form-comps/datepicker";
 import AutoComplete from "../../AutoComplete";
-import PlantNumComp from "../form-comps/PlantNumComp";
+import PackageComp from "../form-comps/package-comp";
 
 function NewPackage() {
   const [showOverlay, setShowOverlay] = useState(false);
-
-  const [numPlants, setNumPlants] = useState(1);
-
-  const handlePlantDataChange = useCallback((data, index) => {
-    setFormData((prevData) => {
-      const newPlantNums = [...prevData.plantNums];
-      newPlantNums[index] = data.sourceTag; // Only store the sourceTag value
-      return { ...prevData, plantNums: newPlantNums };
-    });
-  }, []);
-
-  useEffect(() => {
-    setFormData((prevData) => {
-      const newPlantNums = prevData.plantNums.slice(0, numPlants);
-      return { ...prevData, plantNums: newPlantNums };
-    });
-  }, [numPlants]);
-
   const [activeNote, setActiveNote] = useState("");
+  const [numPlants, setNumPlants] = useState(1);
 
   const [formData, setFormData] = useState({
     newTag: "",
     location: "",
     item: "",
-    plantDate: "",
+    packageDate: "",
     note: "",
-    plantNums: [],
+    packageNums: Array(numPlants).fill({
+      packageNumber: "",
+      weight: "",
+      unit: "",
+    }),
   });
+
+  const handlePackageDataChange = useCallback((itemNumber, data) => {
+    setFormData((prevData) => {
+      const newPackageNums = [...prevData.packageNums];
+      newPackageNums[itemNumber] = {
+        ...newPackageNums[itemNumber],
+        ...data,
+      };
+      return { ...prevData, packageNums: newPackageNums };
+    });
+  }, []);
+
+  useEffect(() => {
+    setFormData((prevData) => {
+      const newPackageNums = [...prevData.packageNums];
+      while (newPackageNums.length < numPlants) {
+        newPackageNums.push({ packageNumber: "", weight: "", unit: "" });
+      }
+      while (newPackageNums.length > numPlants) {
+        newPackageNums.pop();
+      }
+      return { ...prevData, packageNums: newPackageNums };
+    });
+  }, [numPlants]);
 
   //These need to be made dynamic
   const newTags = [
@@ -94,7 +105,7 @@ function NewPackage() {
   return (
     <div className="form-wrap">
       <div className="form-container">
-        <Form_header text="Create Vegetative Plants Package" />
+        <Form_header text="Create New Package" />
         <div className="form-content">
           <form onSubmit={handleSubmit}>
             <div className="itm-list">
@@ -135,9 +146,9 @@ function NewPackage() {
                 />
               </div>
               <DatePicker
-                dateTitle="Planting Date"
+                dateTitle="Package Date"
                 onChange={handleChange}
-                name="plantDate"
+                name="packageDate"
               />
               <div className="itm-container">
                 <p>Note</p>
@@ -173,22 +184,27 @@ function NewPackage() {
                   </button>
                 </div>
               )}
+
               <div className="plant-list">
                 <div className="itm-container">
-                  <p>Number of Plants</p>
+                  <p>Number of Packages</p>
                   <input
                     type="number"
                     value={numPlants}
                     onChange={(e) => setNumPlants(Number(e.target.value))}
-                    onKeyPress={(e) => e.key === "Enter" && e.preventDefault()} // Prevent form submission on Enter
+                    onKeyDown={(e) => e.key === "Enter" && e.preventDefault()} // Prevent form submission on Enter
                     min="1"
+                    max="150"
                     className="number-input" // Add a class for styling
                   />
                 </div>
                 {Array.from({ length: numPlants }, (_, index) => (
-                  <PlantNumComp
+                  <PackageComp
                     key={index}
-                    onDataChange={(data) => handlePlantDataChange(data, index)}
+                    itemNumber={index + 1}
+                    onDataChange={(data) =>
+                      handlePackageDataChange(index, data)
+                    }
                   />
                 ))}
               </div>
