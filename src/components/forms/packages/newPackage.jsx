@@ -5,7 +5,7 @@ import DatePicker from "../form-comps/datepicker";
 import AutoComplete from "../../AutoComplete";
 import PlantNumComp from "../form-comps/PlantNumComp";
 
-function CreateVPP() {
+function NewPackage() {
   const [showOverlay, setShowOverlay] = useState(false);
 
   const [numPlants, setNumPlants] = useState(1);
@@ -37,7 +37,7 @@ function CreateVPP() {
   });
 
   //These need to be made dynamic
-  const tags = [
+  const newTags = [
     "1A40E0100019269000000064",
     "1A40E0100019269000000065",
     "1A40E0100019269000000066",
@@ -101,7 +101,7 @@ function CreateVPP() {
               <div className="itm-container">
                 <p>New Tag</p>
                 <AutoComplete
-                  options={tags}
+                  options={newTags}
                   onChange={(selectedValue) => {
                     setFormData((prevData) => ({
                       ...prevData,
@@ -203,4 +203,4 @@ function CreateVPP() {
   );
 }
 
-export default CreateVPP;
+export default NewPackage;
