@@ -9,6 +9,7 @@ function NewPackage() {
   const [showOverlay, setShowOverlay] = useState(false);
   const [activeNote, setActiveNote] = useState("");
   const [numPlants, setNumPlants] = useState(1);
+  const [isItemNull, setIsItemNull] = useState(false);
 
   const [formData, setFormData] = useState({
     newTag: "",
@@ -134,17 +135,37 @@ function NewPackage() {
                 />
               </div>
               <div className="itm-container">
-                <p>Item</p>
-                <AutoComplete
-                  options={items}
-                  onChange={(selectedValue) => {
-                    setFormData((prevData) => ({
-                      ...prevData,
-                      item: selectedValue,
-                    }));
-                  }}
-                />
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={isItemNull}
+                    onChange={(e) => {
+                      setIsItemNull(e.target.checked);
+                      if (e.target.checked) {
+                        setFormData((prevData) => ({
+                          ...prevData,
+                          item: null,
+                        }));
+                      }
+                    }}
+                  />
+                  Same Item
+                </label>
               </div>
+              {!isItemNull && (
+                <div className="itm-container">
+                  <p>Item</p>
+                  <AutoComplete
+                    options={items}
+                    onChange={(selectedValue) => {
+                      setFormData((prevData) => ({
+                        ...prevData,
+                        item: selectedValue,
+                      }));
+                    }}
+                  />
+                </div>
+              )}
               <DatePicker
                 dateTitle="Package Date"
                 onChange={handleChange}
@@ -184,20 +205,19 @@ function NewPackage() {
                   </button>
                 </div>
               )}
-
+              <div className="itm-container">
+                <p style={{ alignSelf: "center" }}>Number of Packages</p>
+                <input
+                  type="number"
+                  value={numPlants}
+                  onChange={(e) => setNumPlants(Number(e.target.value))}
+                  onKeyDown={(e) => e.key === "Enter" && e.preventDefault()} // Prevent form submission on Enter
+                  min="1"
+                  max="150"
+                  className="number-input" // Add a class for styling
+                />
+              </div>
               <div className="plant-list">
-                <div className="itm-container">
-                  <p>Number of Packages</p>
-                  <input
-                    type="number"
-                    value={numPlants}
-                    onChange={(e) => setNumPlants(Number(e.target.value))}
-                    onKeyDown={(e) => e.key === "Enter" && e.preventDefault()} // Prevent form submission on Enter
-                    min="1"
-                    max="150"
-                    className="number-input" // Add a class for styling
-                  />
-                </div>
                 {Array.from({ length: numPlants }, (_, index) => (
                   <PackageComp
                     key={index}

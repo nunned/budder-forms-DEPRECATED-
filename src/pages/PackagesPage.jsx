@@ -2,6 +2,7 @@
 
 import { Link } from 'react-router-dom';
 import NewPackage from '../components/forms/packages/newPackage';
+import RemediateP from '../components/forms/packages/remediateP';
 
 function PackagesPage() {
   return (
@@ -13,6 +14,7 @@ function PackagesPage() {
         </ul>
       </nav>
       <NewPackage />
+      <RemediateP />
     </div>
   );
 }
